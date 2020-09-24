@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mainScreens.MainActivity"
+    android:orientation="horizontal"
+    android:background="@color/colorPrimary"
+    android:padding="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+            <LinearLayout
+                android:background="@drawable/brief_border_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <LinearLayout
+                    android:padding="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:layout_marginBottom="4dp"
+                    >
+                    <TextView
+                        android:id="@+id/nameTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="الأسم : "
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+                    <EditText
+                        android:id="@+id/servantName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="i Love you"
+                        android:backgroundTint="#00ffffff"
+                        android:textSize="14sp"
+                        android:layoutDirection="rtl"
+                        android:textDirection="rtl"
+                        />
+
+                </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:layout_marginBottom="4dp"
+            >
+            <TextView
+                android:id="@+id/ageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="السن :"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="4dp"/>
+            <EditText
+                android:id="@+id/servantAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="i Love you"
+                android:backgroundTint="#00ffffff"
+                android:textSize="14sp"
+                android:layoutDirection="rtl"
+                android:textDirection="rtl"
+                />
+
+        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:layout_marginBottom="4dp"
+                    >
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="التاريخ :"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:padding="4dp"/>
+                    <EditText
+                        android:id="@+id/lectureDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="i Love you"
+                        android:backgroundTint="#00ffffff"
+                        android:textSize="14sp"
+                        android:layoutDirection="rtl"
+                        android:textDirection="rtl"
+                        />
+
+                </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:layout_marginBottom="4dp"
+            >
+            <TextView
+                android:id="@+id/lectureTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="عنوان الدرس :"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="4dp"/>
+            <EditText
+                android:id="@+id/lecture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="i Love you"
+                android:backgroundTint="#00ffffff"
+                android:textSize="14sp"
+                android:layoutDirection="rtl"
+                android:textDirection="rtl"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:layout_marginBottom="4dp"
+            >
+            <TextView
+                android:id="@+id/verse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="الآية :"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="4dp"/>
+            <EditText
+                android:id="@+id/quote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="i Love you"
+                android:backgroundTint="#00ffffff"
+                android:textSize="14sp"
+                android:layoutDirection="rtl"
+                android:textDirection="rtl"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ملاحظات:"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:padding="4dp"
+            />
+        <EditText
+            android:id="@+id/lectureNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="fuck all of you"
+            android:textDirection="rtl"
+            android:background="@drawable/brief_border_background"
+            android:layout_marginHorizontal="8dp"
+            android:textColorLink="#000000"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@drawable/edit_text_cursor"
+            android:textColorHighlight="#FF6D00"
+            android:padding="12dp"
+            />
+        <Button
+            android:id="@+id/sendLecture"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:padding="0dp"
+            android:text="Submit"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/brief_border_background"
+            />
+            </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

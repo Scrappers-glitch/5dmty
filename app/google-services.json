@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "437637397126",
+    "firebase_url": "https://fir-training-app-369d8.firebaseio.com",
+    "project_id": "fir-training-app-369d8",
+    "storage_bucket": "fir-training-app-369d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437637397126:android:f95887bfa8eb6829746f07",
+        "android_client_info": {
+          "package_name": "com.scrappers.churchService"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437637397126-v9ea566ar61enebb3s73coo07ck1vm8b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scrappers.churchService",
+            "certificate_hash": "abb49218c69799d85192344a766d92c7dbdca693"
+          }
+        },
+        {
+          "client_id": "437637397126-leqtf9h60flc68geum8n0ga7k2o5v12u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcpBRXQlKXY4gcVJUlSvZXNMWiwEVzoGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437637397126-leqtf9h60flc68geum8n0ga7k2o5v12u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437637397126:android:880d1e604b3aa517746f07",
+        "android_client_info": {
+          "package_name": "com.scrappers.firebasetrainingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437637397126-k51kuk2kmsdmni73bfd93hg3816j3qpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scrappers.firebasetrainingapp",
+            "certificate_hash": "abb49218c69799d85192344a766d92c7dbdca693"
+          }
+        },
+        {
+          "client_id": "437637397126-leqtf9h60flc68geum8n0ga7k2o5v12u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcpBRXQlKXY4gcVJUlSvZXNMWiwEVzoGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437637397126-leqtf9h60flc68geum8n0ga7k2o5v12u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
