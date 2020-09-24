@@ -17,6 +17,7 @@ public class LocalDatabase {
     private final AppCompatActivity context;
     private final String file;
 
+    
     /**
      * Instantiate a new JSON database local file
      * @param context the context of the activity
