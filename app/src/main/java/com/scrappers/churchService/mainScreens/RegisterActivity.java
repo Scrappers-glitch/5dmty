@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isRememberMe=false;
     private final LocalDatabase localDatabase=new LocalDatabase(RegisterActivity.this, "/user/user.json");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
