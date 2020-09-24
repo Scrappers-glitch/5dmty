@@ -17,7 +17,7 @@ public class LocalDatabase {
     private final AppCompatActivity context;
     private final String file;
 
-    //hi from your clone
+    //hi from your  clone
     /**
      * Instantiate a new JSON database local file
      * @param context the context of the activity
