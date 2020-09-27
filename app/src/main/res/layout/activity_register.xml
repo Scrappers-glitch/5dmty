@@ -1,126 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainScreens.MainActivity"
-    android:orientation="horizontal"
-    android:background="@color/colorPrimary"
-    android:padding="8dp">
-    <LinearLayout
-        android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".mainScreens.RegisterActivity"
+    android:background="@color/paletteWhite">
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:padding="12dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="جنود المسيح"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="casual"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="340dp"
+        android:layout_height="650dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="1000dp"
+        app:contentPadding="18dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_marginTop="102dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_alignParentBottom="true"
+        app:cardMaxElevation="0dp"
+        app:cardElevation="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         >
         <LinearLayout
-            android:background="@drawable/brief_border_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp">
-            <LinearLayout
-                android:padding="4dp"
+            android:gravity="center"
+            >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="0dp"
+        app:contentPadding="0dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:layout_marginBottom="42dp"
+        >
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:backgroundTint="@color/paletteWhite"
+            android:src="@mipmap/cutted_old_paper"/>
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/servantName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background__edit_text_rounded"
+        android:hint="UserName"
+        android:padding="18dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/paletteWhite"
+        android:textColorHint="@color/colorPrimary"
+        android:elevation="2dp"
+        android:layout_marginBottom="16dp"
+        android:inputType="text"
+        android:autofillHints="@string/app_name"
+        />
+            <EditText
+                android:id="@+id/servantAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layoutDirection="rtl"
-                android:layout_marginBottom="4dp"
-                >
-                <TextView
-                    android:id="@+id/nameTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="الأسم : "
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-                <EditText
-                    android:id="@+id/servantName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="i Love you"
-                    android:backgroundTint="#00ffffff"
-                    android:textSize="14sp"
-                    android:layoutDirection="rtl"
-                    android:textDirection="rtl"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layoutDirection="rtl"
-                android:layout_marginBottom="4dp"
-                >
-                <TextView
-                    android:id="@+id/ageTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="السن :"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:padding="4dp"/>
-                <EditText
-                    android:id="@+id/servantAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="i Love you"
-                    android:backgroundTint="#00ffffff"
-                    android:textSize="14sp"
-                    android:layoutDirection="rtl"
-                    android:textDirection="rtl"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layoutDirection="rtl"
-                android:layout_marginBottom="4dp"
-                >
-                <TextView
-                    android:id="@+id/classTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="الفصل :"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:padding="4dp"/>
-                <EditText
-                    android:id="@+id/servantClass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="i Love you"
-                    android:backgroundTint="#00ffffff"
-                    android:textSize="14sp"
-                    android:layoutDirection="rtl"
-                    android:textDirection="rtl"
-                    />
-
-            </LinearLayout>
+                android:background="@drawable/background__edit_text_rounded"
+                android:hint="Age"
+                android:padding="18dp"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/paletteWhite"
+                android:textColorHint="@color/colorPrimary"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="number"
+                android:autofillHints="@string/app_name"
+                />
+    <EditText
+        android:id="@+id/servantClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background__edit_text_rounded"
+        android:hint="Class"
+        android:padding="18dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/paletteWhite"
+        android:textColorHint="@color/colorPrimary"
+        android:elevation="2dp"
+        android:layout_marginBottom="16dp"
+        android:inputType="text"
+        android:autofillHints="@string/app_name"
+        />
+    <EditText
+        android:id="@+id/phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background__edit_text_rounded"
+        android:hint="PhoneNumber"
+        android:padding="18dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/paletteWhite"
+        android:textColorHint="@color/colorPrimary"
+        android:elevation="2dp"
+        android:layout_marginBottom="16dp"
+        android:inputType="phone"
+        />
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/rememberMe"
-                android:layoutDirection="rtl"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="تذكرني"/>
-            <Button
-                android:id="@+id/register"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:padding="0dp"
-                android:text="تم"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/brief_border_background"
+                android:layout_marginTop="24dp"
+                android:text="Keep me Signed In"
+                android:textColor="@color/colorPrimary"
+                android:checked="false"
+                android:buttonTint="@color/paletteWhite"
                 />
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <ImageButton
+        android:id="@+id/register"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        android:tint="@color/paletteWhite"
+        android:background="@drawable/background__red_circle"/>
 
-</ScrollView>
+
+</RelativeLayout>

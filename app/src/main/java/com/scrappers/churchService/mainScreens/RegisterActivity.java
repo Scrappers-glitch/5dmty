@@ -3,10 +3,9 @@ package com.scrappers.churchService.mainScreens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -22,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean isRememberMe=false;
     private final LocalDatabase localDatabase=new LocalDatabase(RegisterActivity.this, "/user/user.json");
-
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(isRememberMe){
 
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this, AllLecturesActivity.class));
             finish();
         }else {
             /*Remember Me checkBox*/
@@ -57,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             });
 
             /*Register Button*/
-            Button register = findViewById(R.id.register);
+            ImageButton register = findViewById(R.id.register);
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -66,20 +65,28 @@ public class RegisterActivity extends AppCompatActivity {
                      *save Data at RealTime environment
                      */
                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                    DatabaseReference databaseReference = firebaseDatabase.getReference();
+                    databaseReference = firebaseDatabase.getReference();
 
-                    DatabaseReference servantNode = databaseReference.child("جمعيه الجنود").child("الخدام").child(((EditText)findViewById(R.id.servantName)).getText().toString()).child("الخادم");
-                    servantNode.child(((TextView)findViewById(R.id.nameTitle)).getText().toString()).
-                                                        setValue(((EditText)findViewById(R.id.servantName)).getText().toString());
-                    servantNode.child(((TextView)findViewById(R.id.ageTitle)).getText().toString()).
-                                                        setValue(((EditText)findViewById(R.id.servantAge)).getText().toString());
-                    servantNode.child(((TextView)findViewById(R.id.classTitle)).getText().toString()).
-                                                        setValue(((EditText)findViewById(R.id.servantClass)).getText().toString());
 
-                    /*save Local Database as a JSON file*/
-                    localDatabase.writeData(((EditText)findViewById(R.id.servantName)).getText().toString(), isRememberMe);
+                            /* RealTime Database*/
 
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            DatabaseReference servantNode =
+                                    databaseReference.child("Gnod").
+                                    child("servants").
+                                    child(((EditText)findViewById(R.id.servantName)).getText().toString()).
+                                    child("details");
+
+                            servantNode.child("name").setValue(((EditText)findViewById(R.id.servantName)).getText().toString());
+                            servantNode.child("age").setValue(((EditText)findViewById(R.id.servantAge)).getText().toString());
+                            servantNode.child("class").setValue(((EditText)findViewById(R.id.servantClass)).getText().toString());
+                            servantNode.child("phoneNumber").setValue(((EditText)findViewById(R.id.phoneNumber)).getText().toString());
+                            /*save Local Database as a JSON file*/
+                            localDatabase.writeData(((EditText)findViewById(R.id.servantName)).getText().toString(), isRememberMe);
+
+
+
+
+                    startActivity(new Intent(getApplicationContext(), AllLecturesActivity.class));
                     finish();
                 }
             });
