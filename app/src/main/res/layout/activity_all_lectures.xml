@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:layout_gravity="center_horizontal"
-    android:background="@color/paletteWhite">
+    android:background="@color/paletteWhite"
+    tools:context=".mainScreens.AllLecturesActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -14,7 +16,15 @@
         android:background="@drawable/background__rounded_bottom_corners"
         android:paddingHorizontal="8dp"
         app:navigationIcon="@drawable/ic_menu_black_24dp">
+        <ImageButton
+            android:id="@+id/adapterSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_blur_linear_black_24dp"
+            android:backgroundTint="@color/cardview_shadow_start_color"
+            />
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchLecture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/paletteWhite"
@@ -24,6 +34,7 @@
             android:theme="@style/AppTheme"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="18dp"/>
+
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -32,6 +43,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
         android:layout_above="@+id/addNewLecture"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         />
     <Button
         android:id="@+id/addNewLecture"

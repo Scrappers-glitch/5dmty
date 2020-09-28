@@ -13,17 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 class CardViewHolder extends RecyclerView.ViewHolder {
-    private LinearLayout card;
+    LinearLayout card;
     EditText lecture;
     EditText lectureDate;
     TextView lectureNotes;
     EditText quote;
     Button save;
     ImageButton removeLecture;
+    ImageButton dropDownButton;
 
     CardViewHolder(@NonNull View itemView) {
         super(itemView);
-         card=itemView.findViewById(R.id.cardViewLayout);
+         card=itemView.findViewById(R.id.dropDownMenu);
          lecture=itemView.findViewById(R.id.lecture);
          lectureDate=itemView.findViewById(R.id.lectureDate);
          lectureNotes=itemView.findViewById(R.id.lectureNotes);
@@ -31,6 +32,7 @@ class CardViewHolder extends RecyclerView.ViewHolder {
 
          save=itemView.findViewById(R.id.saveLecture);
          removeLecture=itemView.findViewById(R.id.removeLecture);
+         dropDownButton=itemView.findViewById(R.id.dropDownButton);
 
     }
 }

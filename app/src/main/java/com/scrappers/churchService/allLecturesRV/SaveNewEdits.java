@@ -45,7 +45,7 @@ public class SaveNewEdits implements View.OnClickListener {
             lecturesNode.child(lecture.getText().toString()).child("notes").setValue(lectureNotes.getText().toString());
             lecturesNode.child(lecture.getText().toString()).child("verse").setValue(quote.getText().toString());
 
-        databaseReference.addValueEventListener(new ReadDatabaseChanges(context,lecturesRV, servantName));
+        databaseReference.addValueEventListener(new ReadDatabaseChanges(context, lecturesAdapter, lecturesRV, servantName));
         lecturesAdapter.notifyDataSetChanged();
     }
 }

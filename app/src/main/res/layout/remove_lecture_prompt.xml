@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@drawable/radial_dailog"
+    android:foregroundTint="@color/colorPrimaryDark">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="هل تريد حقا الغاء الدرس ؟"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/paletteWhite"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/yesDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background__red_circle"
+        android:text="نعم"
+        android:layout_marginBottom="10dp"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/noClose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background__red_circle"
+        android:text="لا"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
