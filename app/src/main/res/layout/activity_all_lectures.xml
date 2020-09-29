@@ -35,11 +35,19 @@
             android:layout_marginEnd="18dp"/>
 
     </androidx.appcompat.widget.Toolbar>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme"
+        android:soundEffectsEnabled="true"
+        android:isScrollContainer="true"
+        >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allLecturesRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

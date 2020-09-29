@@ -85,8 +85,6 @@ public class RegisterActivity extends AppCompatActivity {
                             localDatabase.writeData(((EditText)findViewById(R.id.servantName)).getText().toString(), isRememberMe);
 
 
-
-
                     startActivity(new Intent(getApplicationContext(), HolderActivity.class));
                     finish();
                 }

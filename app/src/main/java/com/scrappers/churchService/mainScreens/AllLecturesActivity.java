@@ -1,6 +1,8 @@
 package com.scrappers.churchService.mainScreens;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,15 +30,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class AllLecturesActivity extends Fragment {
 
+    private View viewInflater;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private String servantName;
     private RecyclerView lecturesRV;
     private LecturesCardView lecturesCardView;
     private DatabaseReference databaseReference;
     private int spanCount=1;
     private final AppCompatActivity context;
+
 
     public AllLecturesActivity(AppCompatActivity context){
         this.context=context;
@@ -45,7 +51,7 @@ public class AllLecturesActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View viewInflater=inflater.inflate(R.layout.activity_all_lectures,container,false);
+        viewInflater=inflater.inflate(R.layout.activity_all_lectures,container,false);
 
         Toolbar toolbar=viewInflater.findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -54,6 +60,29 @@ public class AllLecturesActivity extends Fragment {
                 HolderActivity.navigationDrawer.showUp();
             }
         });
+
+        swipeRefreshLayout=viewInflater.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.GREEN,Color.YELLOW,Color.CYAN);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new CountDownTimer(4000,1000){
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        swipeRefreshLayout.setRefreshing(false);
+                        loadAllLectures(viewInflater);
+                    }
+                }.start();
+            }
+        });
+
         try{
             servantName=new LocalDatabase(context,"/user/user.json").readData().getJSONObject(0).getString("name");
         }catch (Exception e){
