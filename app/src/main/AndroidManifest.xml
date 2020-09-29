@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-    <activity android:name=".mainScreens.RegisterActivity">
+    <activity android:name=".mainScreens.RegisterActivity"
+        android:screenOrientation="portrait">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +21,9 @@
         </intent-filter>
     </activity>
 
-        <activity android:name=".HolderActivity"/>
+        <activity android:name=".HolderActivity"
+                  android:screenOrientation="portrait"
+            />
 
     </application>
 
