@@ -58,11 +58,14 @@ public class NavigationDrawer {
         fragmentTransaction.replace(R.id.content,window);
         fragmentTransaction.commit();
     }
-    private void dismiss(){
+    public void dismiss(){
         drawerLayout.closeDrawer(GravityCompat.START);
     }
     public void showUp(){
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
+    public boolean isShownUp() {
+        return drawerLayout.isDrawerOpen(GravityCompat.START);
+    }
 }

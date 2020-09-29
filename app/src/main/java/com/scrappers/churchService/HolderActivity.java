@@ -36,4 +36,12 @@ public class HolderActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        if(navigationDrawer.isShownUp()){
+            navigationDrawer.dismiss();
+        }else {
+            super.onBackPressed();
+        }
+    }
 }
