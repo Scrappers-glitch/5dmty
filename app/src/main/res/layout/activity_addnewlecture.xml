@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/paletteWhite"
+    android:orientation="vertical"
+    tools:context=".mainScreens.AddNewLectureActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@drawable/background__rounded_bottom_corners"
+        app:navigationIcon="@drawable/ic_menu_black_24dp"
+        android:paddingHorizontal="8dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="أرسال درس"
+            android:textSize="22sp"
+            android:textColor="@color/paletteWhite"
+            android:gravity="center"
+            />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background__border"
+        android:layout_margin="8dp"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="عنوان الدرس : "
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/lecture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:textDirection="rtl"
+                android:inputType="text"
+                android:autofillHints="@string/app_name"
+                android:hint="عنوان الدرس"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="14sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="التاريخ : "
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/lectureDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:textDirection="rtl"
+                android:inputType="text"
+                android:autofillHints="@string/app_name"
+                android:textColor="@color/colorPrimaryDark"
+                android:hint="عنوان الدرس"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="15sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="الأيه : "
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/quote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:textDirection="rtl"
+                android:inputType="text"
+                android:autofillHints="@string/app_name"
+                android:textColor="@color/colorPrimaryDark"
+                android:hint="عنوان الدرس"
+                android:textSize="16sp"
+                android:textColorHint="@color/colorPrimary"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/sendLecture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:paddingHorizontal="48dp"
+        android:layout_marginBottom="24dp"
+        android:text="أرسال"
+        android:textSize="20sp"
+        android:textColor="@color/paletteWhite"
+        android:background="@drawable/background__red_circle"
+        android:layout_gravity="start"
+        android:backgroundTint="@color/colorAccent2"
+        android:elevation="8dp"
+        />
+</LinearLayout>

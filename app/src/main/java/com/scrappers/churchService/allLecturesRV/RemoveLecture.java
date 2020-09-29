@@ -13,6 +13,7 @@ import com.scrappers.churchService.dialogBox.DialogBox;
 import com.scrappers.churchService.localDatabase.LocalDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class RemoveLecture implements View.OnClickListener {
     private final AppCompatActivity context;
@@ -27,6 +28,8 @@ public class RemoveLecture implements View.OnClickListener {
     public void onClick(View v) {
         final DialogBox dialogBox=new DialogBox(context);
         dialogBox.showDialog(R.layout.remove_lecture_prompt, Gravity.CENTER);
+        assert  dialogBox.getAlertDialog().getWindow() !=null;
+        dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
         final View view=dialogBox.getInflater();
         Button yesDelete=view.findViewById(R.id.yesDelete);
         yesDelete.setOnClickListener(new View.OnClickListener() {

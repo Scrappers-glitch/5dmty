@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -123,7 +124,7 @@ public class AllLecturesActivity extends Fragment {
                 final DialogBox dialogBox=new DialogBox(context);
                 dialogBox.showDialog(R.layout.adapter_settings_dialog, Gravity.TOP);
                 assert dialogBox.getAlertDialog().getWindow() !=null;
-                dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.radial_dailog));
+                dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
 //                dialogBox.getAlertDialog().getWindow().getAttributes().windowAnimations=R.style.Widget_AppCompat_PopupWindow;
                 /*SearchType Settings Listeners*/
                 Button[] searchType={dialogBox.getInflater().findViewById(R.id.searchByLecture),
