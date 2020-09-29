@@ -1,12 +1,15 @@
 package com.scrappers.churchService.mainScreens;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ public class AllServantsScreen extends Fragment {
 
 
     private final AppCompatActivity context;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private View viewInflater;
 
     public AllServantsScreen(AppCompatActivity context) {
@@ -41,6 +45,26 @@ public class AllServantsScreen extends Fragment {
         loadAllServants();
 
 
+        swipeRefreshLayout=viewInflater.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.GREEN,Color.RED,Color.GREEN);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new CountDownTimer(4000,1000){
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        loadAllServants();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }.start();
+            }
+        });
         return viewInflater;
     }
 
