@@ -3,6 +3,7 @@ package com.scrappers.churchService;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
+import com.scrappers.churchService.localDatabase.LocalDatabase;
 import com.scrappers.churchService.mainScreens.AllLecturesActivity;
 import com.scrappers.churchService.navigationDrawer.NavigationDrawer;
 
@@ -24,7 +25,13 @@ public class HolderActivity extends AppCompatActivity {
         DrawerLayout drawerLayout=findViewById(R.id.drawer);
         Toolbar toolbar=findViewById(R.id.toolbar);
         /*Define Default Fragment*/
-        displayFragment(new AllLecturesActivity(this));
+        try {
+            displayFragment(new AllLecturesActivity(this,
+                    new LocalDatabase(this,"/user/user.json").readData().
+                            getJSONObject(0).getString("name"),false));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         /*Define Nav Drawer Instance*/
         navigationDrawer=new NavigationDrawer(this,drawerLayout,navigationView,toolbar);
         navigationDrawer.activate();

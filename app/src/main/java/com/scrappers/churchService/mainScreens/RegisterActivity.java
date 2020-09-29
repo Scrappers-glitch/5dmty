@@ -72,7 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
                             /* RealTime Database*/
 
                             DatabaseReference servantNode =
-                                    databaseReference.child("Gnod").
+                                    databaseReference.
+                                    child("Gnod").
                                     child("servants").
                                     child(((EditText)findViewById(R.id.servantName)).getText().toString()).
                                     child("details");

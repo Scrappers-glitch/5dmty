@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DialogBox {
 
     private final AppCompatActivity context;
-    private int design;
     private View inflater;
     private AlertDialog alertDialog;
 
@@ -28,14 +27,6 @@ public class DialogBox {
 
     public AlertDialog getAlertDialog() {
         return alertDialog;
-    }
-
-    public int getDesign(){
-        return design;
-    }
-
-    public void setDesign(int design) {
-        this.design = design;
     }
 
     public View getInflater() {

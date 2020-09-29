@@ -16,10 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 public class RemoveLecture implements View.OnClickListener {
+
     private final AppCompatActivity context;
     private final EditText lecture;
     private String servantName;
-    RemoveLecture(AppCompatActivity context, EditText lecture) {
+
+    public RemoveLecture(AppCompatActivity context, EditText lecture) {
         this.context=context;
         this.lecture=lecture;
     }

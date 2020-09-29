@@ -5,7 +5,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.mainScreens.AddNewLectureActivity;
-import com.scrappers.churchService.mainScreens.AllLecturesActivity;
+import com.scrappers.churchService.mainScreens.AllServantsScreen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -41,12 +41,18 @@ public class NavigationDrawer {
                 switch (item.getItemId()){
                     case (R.id.allLecturesItem):
                         dismiss();
-                        displayFragment(new AllLecturesActivity(context));
+                        displayFragment(new AllServantsScreen(context));
                         break;
                     case (R.id.addNewLectureItem):
                         dismiss();
                         displayFragment(new AddNewLectureActivity(context));
                         break;
+//                    case (R.id.allServantsItem):
+//                        DialogBox dialogBox=new DialogBox(context);
+//                        dialogBox.showDialog(R.layout., Gravity.CENTER);
+//
+//
+//                        break;
 
                 }
                 return false;

@@ -9,26 +9,20 @@ import com.scrappers.churchService.allLecturesRV.lecturesModel.LecturesModel;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-public class ReadDatabaseChanges implements ValueEventListener {
+public class ReadLecturesChanges implements ValueEventListener {
 
-    private final AppCompatActivity context;
-    private final RecyclerView lecturesRV;
+
     private LecturesCardView lecturesCardView;
     private final String servantName;
     private ArrayList<LecturesModel> model;
     /**
      * CREATE a database firebase change listener
-     * @param context class context of use
-     * @param lecturesCardView
-     * @param lecturesRV recycle viewer widget to update data
+     * @param lecturesCardView the single view in the all lectures RV
      * @param servantName name of device owner
      */
-    public ReadDatabaseChanges(AppCompatActivity context, LecturesCardView lecturesCardView, RecyclerView lecturesRV, String servantName) {
-        this.context=context;
-        this.lecturesRV=lecturesRV;
+    public ReadLecturesChanges(LecturesCardView lecturesCardView, String servantName) {
+
         this.servantName = servantName;
         this.lecturesCardView=lecturesCardView;
     }
@@ -56,7 +50,6 @@ public class ReadDatabaseChanges implements ValueEventListener {
 
             lecturesCardView.setModel(model);
             lecturesCardView.notifyDataSetChanged();
-
 
     }
 

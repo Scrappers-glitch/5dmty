@@ -24,21 +24,20 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
     private final AppCompatActivity context;
     private final RecyclerView lecturesRV;
     private String searchType="";
+    private boolean isNotesEnabled;
 
-    public LecturesCardView(ArrayList<LecturesModel>  model, String servantName, AppCompatActivity context, RecyclerView lecturesRV) {
+    public LecturesCardView(ArrayList<LecturesModel>  model, String servantName, AppCompatActivity context, RecyclerView lecturesRV,boolean isNotesEnabled) {
         this.model=model;
         this.servantName=servantName;
         this.context=context;
         this.lecturesRV=lecturesRV;
+        this.isNotesEnabled=isNotesEnabled;
     }
 
     public void setSearchType(String searchType) {
         this.searchType = searchType;
     }
 
-    public String getSearchType() {
-        return searchType;
-    }
 
     @NonNull
     @Override
@@ -53,9 +52,6 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
         this.model = model;
     }
 
-    public ArrayList<LecturesModel> getModel() {
-        return model;
-    }
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
@@ -63,8 +59,9 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
             holder.lectureDate.setText(model.get(position).getDate());
             holder.quote.setText(model.get(position).getVerse());
             holder.lectureNotes.setText(model.get(position).getNotes());
+            holder.lectureNotes.setEnabled(isNotesEnabled);
 
-            holder.save.setOnClickListener(new SaveNewEdits(context,holder.lecture,holder.lectureNotes,holder.quote,holder.lectureDate,servantName,this,lecturesRV));
+            holder.save.setOnClickListener(new SaveNewEdits(holder.lecture,holder.lectureNotes,holder.quote,holder.lectureDate,servantName,this));
             holder.removeLecture.setOnClickListener(new RemoveLecture(context,holder.lecture));
             holder.dropDownButton.setOnClickListener(new DropDownLecture(context,holder.card,holder.dropDownButton));
     }

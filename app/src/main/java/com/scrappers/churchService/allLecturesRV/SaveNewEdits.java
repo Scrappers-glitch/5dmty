@@ -6,10 +6,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.scrappers.churchService.realTimeDatabase.ReadDatabaseChanges;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+import com.scrappers.churchService.realTimeDatabase.ReadLecturesChanges;
 
 public class SaveNewEdits implements View.OnClickListener {
     private EditText lecture;
@@ -18,20 +15,16 @@ public class SaveNewEdits implements View.OnClickListener {
     private EditText lectureDate;
     private String servantName;
     private final LecturesCardView lecturesAdapter;
-    private final RecyclerView lecturesRV;
-    private final AppCompatActivity context;
 
-    SaveNewEdits(AppCompatActivity context,
-                 EditText lecture, TextView lectureNotes, EditText quote, EditText lectureDate,
-                 String servantName, LecturesCardView lecturesAdapter, RecyclerView lecturesRV) {
-        this.context=context;
+
+    public SaveNewEdits(EditText lecture, TextView lectureNotes, EditText quote, EditText lectureDate,
+                        String servantName, LecturesCardView lecturesAdapter) {
         this.lecture=lecture;
         this.lectureNotes=lectureNotes;
         this.quote=quote;
         this.lectureDate=lectureDate;
         this.servantName =servantName;
         this.lecturesAdapter=lecturesAdapter;
-        this.lecturesRV=lecturesRV;
     }
 
     @Override
@@ -45,7 +38,7 @@ public class SaveNewEdits implements View.OnClickListener {
             lecturesNode.child(lecture.getText().toString()).child("notes").setValue(lectureNotes.getText().toString());
             lecturesNode.child(lecture.getText().toString()).child("verse").setValue(quote.getText().toString());
 
-        databaseReference.addValueEventListener(new ReadDatabaseChanges(context, lecturesAdapter, lecturesRV, servantName));
+        databaseReference.addValueEventListener(new ReadLecturesChanges(lecturesAdapter, servantName));
         lecturesAdapter.notifyDataSetChanged();
     }
 }

@@ -141,12 +141,13 @@
                 android:text="ملاحظات : "
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"/>
-            <TextView
+            <EditText
                 android:id="@+id/lectureNotes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background__border"
                 android:padding="8dp"
+                android:enabled="false"
                 android:textDirection="rtl"
                 android:inputType="text"
                 android:autofillHints="@string/app_name"

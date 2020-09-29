@@ -17,8 +17,7 @@ import com.scrappers.churchService.R;
 import com.scrappers.churchService.allLecturesRV.LecturesCardView;
 import com.scrappers.churchService.allLecturesRV.lecturesModel.LecturesModel;
 import com.scrappers.churchService.dialogBox.DialogBox;
-import com.scrappers.churchService.localDatabase.LocalDatabase;
-import com.scrappers.churchService.realTimeDatabase.ReadDatabaseChanges;
+import com.scrappers.churchService.realTimeDatabase.ReadLecturesChanges;
 
 import java.util.ArrayList;
 
@@ -43,10 +42,13 @@ public class AllLecturesActivity extends Fragment {
     private DatabaseReference databaseReference;
     private int spanCount=1;
     private final AppCompatActivity context;
+    private boolean isNotesEnabled;
 
 
-    public AllLecturesActivity(AppCompatActivity context){
+    public AllLecturesActivity(AppCompatActivity context,String servantName,boolean isNotesEnabled){
         this.context=context;
+        this.servantName=servantName;
+        this.isNotesEnabled=isNotesEnabled;
     }
 
     @Nullable
@@ -84,11 +86,8 @@ public class AllLecturesActivity extends Fragment {
             }
         });
 
-        try{
-            servantName=new LocalDatabase(context,"/user/user.json").readData().getJSONObject(0).getString("name");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
+
 
         loadAllLectures(viewInflater);
 
@@ -103,7 +102,7 @@ public class AllLecturesActivity extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                databaseReference.addValueEventListener(new ReadDatabaseChanges(context,lecturesCardView,lecturesRV,servantName));
+                databaseReference.addValueEventListener(new ReadLecturesChanges(lecturesCardView, servantName));
                 lecturesCardView.notifyDataSetChanged();
                 return false;
             }
@@ -111,7 +110,7 @@ public class AllLecturesActivity extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                databaseReference.addValueEventListener(new ReadDatabaseChanges(context,lecturesCardView,lecturesRV,servantName));
+                databaseReference.addValueEventListener(new ReadLecturesChanges(lecturesCardView, servantName));
                 lecturesCardView.notifyDataSetChanged();
                 return false;
             }
@@ -178,12 +177,12 @@ public class AllLecturesActivity extends Fragment {
     private void loadAllLectures(View viewInflater){
         lecturesRV=viewInflater.findViewById(R.id.allLecturesRV);
         lecturesRV.setLayoutManager(new GridLayoutManager(context,getSpanCount()));
-        lecturesCardView=new LecturesCardView(new ArrayList<LecturesModel>(),servantName,context,lecturesRV);
+        lecturesCardView=new LecturesCardView(new ArrayList<LecturesModel>(),servantName,context,lecturesRV,isNotesEnabled);
         lecturesCardView.setSearchType("lecture");
         lecturesRV.setAdapter(lecturesCardView);
 
         databaseReference=FirebaseDatabase.getInstance().getReference();
-        databaseReference.addValueEventListener(new ReadDatabaseChanges(context,lecturesCardView,lecturesRV,servantName));
+        databaseReference.addValueEventListener(new ReadLecturesChanges(lecturesCardView, servantName));
     }
 
     private void setSpanCount(int spanCount) {

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.scrappers.churchService.HolderActivity;
@@ -63,18 +64,27 @@ public class AddNewLectureActivity extends Fragment {
             public void onClick(View view) {
 
                 String lectureName=((EditText)viewInflater.findViewById(R.id.lecture)).getText().toString();
-                /*get Lectures number from RealTime Database*/
-                /*send lecture details to RealTime Cloud Servers*/
-                DatabaseReference servantNode=databaseReference.child("Gnod").child("servants").child(servantName);
-                DatabaseReference lectureNode=servantNode.child("lectures").child(lectureName);
+                if( lectureName.length() != 0 | !lectureName.isEmpty() ){
+                    /*get Lectures number from RealTime Database*/
+                    /*send lecture details to RealTime Cloud Servers*/
+                    DatabaseReference servantNode = databaseReference.child("Gnod").child("servants").child(servantName);
+                    DatabaseReference lectureNode = servantNode.child("lectures").child(lectureName);
 
-                lectureNode.child("lecture").setValue(lectureName);
-                lectureNode.child("date").setValue(((EditText)viewInflater.findViewById(R.id.lectureDate)).getText().toString());
-                lectureNode.child("verse").setValue(((EditText)viewInflater.findViewById(R.id.quote)).getText().toString());
-                lectureNode.child("notes").setValue("");
+                    lectureNode.child("lecture").setValue(lectureName);
+                    lectureNode.child("date").setValue(((EditText) viewInflater.findViewById(R.id.lectureDate)).getText().toString());
+                    lectureNode.child("verse").setValue(((EditText) viewInflater.findViewById(R.id.quote)).getText().toString());
+                    lectureNode.child("notes").setValue("");
 
-
-                displayFragment(new AllLecturesActivity(context));
+                    try {
+                        displayFragment(new AllLecturesActivity(context,
+                                new LocalDatabase(context,"/user/user.json").readData()
+                                        .getJSONObject(0).getString("name"),false));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Snackbar.make(view,"يتعذر ارسال درس خالي !",Snackbar.LENGTH_LONG).show();
+                }
             }
         });
         return viewInflater;
