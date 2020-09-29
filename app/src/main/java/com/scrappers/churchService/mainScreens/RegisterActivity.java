@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-                    startActivity(new Intent(getApplicationContext(), AllLecturesActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HolderActivity.class));
                     finish();
                 }
             });
