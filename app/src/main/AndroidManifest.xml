@@ -11,15 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainScreens.AllLecturesActivity" />
-        <activity android:name=".mainScreens.RegisterActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".mainScreens.AllLecturesActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+    </activity>
+
+    <activity android:name=".mainScreens.RegisterActivity">
+
         </activity>
-        <activity android:name=".mainScreens.AddNewLectureActivity" />
+        <activity android:name=".mainScreens.AddNewLectureActivity" >
+
+        </activity>
+        <activity android:name=".HolderActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

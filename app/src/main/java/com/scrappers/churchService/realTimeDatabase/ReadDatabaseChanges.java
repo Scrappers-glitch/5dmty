@@ -3,7 +3,6 @@ package com.scrappers.churchService.realTimeDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.scrappers.churchService.R;
 import com.scrappers.churchService.allLecturesRV.LecturesCardView;
 import com.scrappers.churchService.allLecturesRV.lecturesModel.LecturesModel;
 
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ReadDatabaseChanges implements ValueEventListener {

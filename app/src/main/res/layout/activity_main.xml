@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="."
-    android:background="@color/colorPrimary"
-    >
+    tools:openDrawer="start"
+    android:fitsSystemWindows="true"
+    tools:context="HolderActivity">
 
-<!--    <com.shrikanthravi.customnavigationdrawer2.widget.SNavigationDrawer-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:navigationDrawerBackgroundColor="@color/paletteWhite"-->
-<!--        app:appbarTitleTextColor="@color/paletteWhite"-->
-<!--        app:HamMenuIconTintColor="@color/colorPrimary"-->
-<!--        app:appbarColor="@color/colorPrimaryDark"-->
-<!--        app:primaryMenuItemTextColor="@color/paletteWhite"-->
-<!--        app:secondaryMenuItemTextColor="@color/colorPrimary"-->
-<!--        app:appbarTitleTextSize="7sp"-->
-<!--        app:primaryMenuItemTextSize="7sp"-->
-<!--        app:secondaryMenuItemTextSize="7sp"-->
-<!--        android:id="@+id/navigationDrawer">-->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/frameLayout"/>
-<!--    </com.shrikanthravi.customnavigationdrawer2.widget.SNavigationDrawer>-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/menu_main"
+        android:layout_gravity="start"
+        />
 
-</RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        />
+
+</androidx.drawerlayout.widget.DrawerLayout>

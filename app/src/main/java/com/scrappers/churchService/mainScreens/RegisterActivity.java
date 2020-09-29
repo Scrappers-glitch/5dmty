@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.scrappers.churchService.HolderActivity;
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.localDatabase.LocalDatabase;
 
@@ -43,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(isRememberMe){
 
-            startActivity(new Intent(this, AllLecturesActivity.class));
+            startActivity(new Intent(this, HolderActivity.class));
             finish();
         }else {
             /*Remember Me checkBox*/
