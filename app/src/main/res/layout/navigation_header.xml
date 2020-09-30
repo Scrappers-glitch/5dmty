@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="230dp"
     android:background="@color/colorPrimaryDark"
     android:gravity="bottom"
     android:orientation="horizontal"
     android:padding="16dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Profile"
-            android:textColor="@color/paletteWhite" />
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="end"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="12dp">
 
         <ImageView
+            android:id="@+id/profileImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_baseline_person_24" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/profileName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Profile"
+            android:padding="2dp"
+            android:text="ServantName"
             android:textColor="@color/paletteWhite" />
-    </LinearLayout>
+        <TextView
+            android:id="@+id/servantClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:layout_marginStart="12dp"
+            android:textSize="9sp"
+            android:textColor="@color/paletteWhite"
+            android:text="ClassName"
+            />
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:layout_marginStart="12dp"
+            android:textSize="9sp"
+            android:textColor="@color/paletteWhite"
+            android:text="PhoneNumber"
+            />
+        </LinearLayout>
+
 </LinearLayout>

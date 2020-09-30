@@ -9,16 +9,25 @@
     android:background="@drawable/radial_dailog"
     >
     <TextView
+        android:id="@+id/promptMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="هل تريد حقا الغاء الدرس ؟"
+        android:text="هل تريد تسجيل خروج ؟"
         android:layout_marginBottom="10dp"
         android:textColor="@color/paletteWhite"
         android:textSize="20sp"
         />
+    <CheckBox
+        android:id="@+id/deleteMyDataCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:text="إلغاء بياناتي"
+        android:textColor="@color/paletteWhite"
+        />
 
     <Button
-        android:id="@+id/yesDelete"
+        android:id="@+id/yesOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background__red_circle"

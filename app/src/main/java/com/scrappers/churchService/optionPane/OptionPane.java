@@ -1,17 +1,17 @@
-package com.scrappers.churchService.dialogBox;
+package com.scrappers.churchService.optionPane;
 
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DialogBox {
+public class OptionPane {
 
     private final AppCompatActivity context;
     private View inflater;
     private AlertDialog alertDialog;
 
-    public DialogBox(AppCompatActivity context){
+    public OptionPane(AppCompatActivity context){
         this.context=context;
     }
     public void showDialog(int designedLayout,int gravity){

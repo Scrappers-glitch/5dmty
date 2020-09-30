@@ -16,7 +16,7 @@ import com.scrappers.churchService.HolderActivity;
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.allLecturesRV.LecturesCardView;
 import com.scrappers.churchService.allLecturesRV.lecturesModel.LecturesModel;
-import com.scrappers.churchService.dialogBox.DialogBox;
+import com.scrappers.churchService.optionPane.OptionPane;
 import com.scrappers.churchService.realTimeDatabase.ReadLecturesChanges;
 
 import java.util.ArrayList;
@@ -120,16 +120,16 @@ public class AllLecturesScreen extends Fragment {
         adapterSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DialogBox dialogBox=new DialogBox(context);
-                dialogBox.showDialog(R.layout.dialog_adapter_settings_alllectures, Gravity.TOP);
-                assert dialogBox.getAlertDialog().getWindow() !=null;
-                dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
-//                dialogBox.getAlertDialog().getWindow().getAttributes().windowAnimations=R.style.Widget_AppCompat_PopupWindow;
+                final OptionPane optionPane =new OptionPane(context);
+                optionPane.showDialog(R.layout.dialog_adapter_settings_alllectures, Gravity.TOP);
+                assert optionPane.getAlertDialog().getWindow() !=null;
+                optionPane.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
+//                optionPane.getAlertDialog().getWindow().getAttributes().windowAnimations=R.style.Widget_AppCompat_PopupWindow;
                 /*SearchType Settings Listeners*/
-                Button[] searchType={dialogBox.getInflater().findViewById(R.id.searchByLecture),
-                        dialogBox.getInflater().findViewById(R.id.searchByDate),
-                        dialogBox.getInflater().findViewById(R.id.searchByVerse),
-                        dialogBox.getInflater().findViewById(R.id.searchByNotes)};
+                Button[] searchType={optionPane.getInflater().findViewById(R.id.searchByLecture),
+                        optionPane.getInflater().findViewById(R.id.searchByDate),
+                        optionPane.getInflater().findViewById(R.id.searchByVerse),
+                        optionPane.getInflater().findViewById(R.id.searchByNotes)};
 
                 final String[] applySearchType={"lecture",
                         "date",
@@ -142,15 +142,15 @@ public class AllLecturesScreen extends Fragment {
                         @Override
                         public void onClick(View v) {
                             lecturesCardView.setSearchType(applySearchType[finalPosition]);
-                            dialogBox.getAlertDialog().dismiss();
+                            optionPane.getAlertDialog().dismiss();
                         }
                     });
                 }
 
                 /*GridLayout Settings Listeners*/
                 final Button[] gridType={
-                        dialogBox.getInflater().findViewById(R.id.gridOneByOne),
-                        dialogBox.getInflater().findViewById(R.id.gridTwoByTwo)};
+                        optionPane.getInflater().findViewById(R.id.gridOneByOne),
+                        optionPane.getInflater().findViewById(R.id.gridTwoByTwo)};
 
                 final int[] applyGridType={1,2};
 
@@ -161,7 +161,7 @@ public class AllLecturesScreen extends Fragment {
                         public void onClick(View v) {
                             setSpanCount(applyGridType[finalPosition]);
                             lecturesRV.setLayoutManager(new GridLayoutManager(context,getSpanCount()));
-                            dialogBox.getAlertDialog().dismiss();
+                            optionPane.getAlertDialog().dismiss();
                         }
                     });
                 }

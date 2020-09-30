@@ -33,12 +33,14 @@ public class LocalDatabase {
      * @param name the JSONObject that holds that JSONArray that have the local data in place
      * @param isRememberMe true if the user signed in - false otherwise
      */
-    public void writeData(String name, boolean isRememberMe, boolean isRememberAdmin)  {
+    public void writeData(String name,String servantClass,String phoneNumber ,boolean isRememberMe, boolean isRememberAdmin)  {
         JSONObject jsonObject=new JSONObject();
         JSONArray jsonArray=new JSONArray();
         try {
             jsonObject.put(name, jsonArray);
             jsonArray.put(new JSONObject().put("name",name));
+            jsonArray.put(new JSONObject().put("class",servantClass));
+            jsonArray.put(new JSONObject().put("phoneNumber",phoneNumber));
             jsonArray.put(new JSONObject().put("isRememberMe",isRememberMe));
             jsonArray.put(new JSONObject().put("isRememberAdmin",isRememberAdmin));
             try(BufferedWriter fos=new BufferedWriter(new FileWriter(new File(context.getFilesDir()+file)))){
@@ -55,13 +57,19 @@ public class LocalDatabase {
      * reads the data fetched from the local file & parse it to a JSONArray
      * @return data in the form of JSONArray
      */
-    public JSONArray readData(){
+    public Object readData(int jsonObjectIndex,String key){
         try(BufferedReader fis=new BufferedReader(new FileReader(new File(context.getFilesDir()+file)))){
-            return new JSONArray(fis.readLine());
+            return new JSONArray(fis.readLine()).getJSONObject(jsonObjectIndex).get(key);
         }catch (IOException | JSONException ex){
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public void removeLocalFiles(){
+        System.out.println(new File(context.getFilesDir()+"/user/user.json").delete());
+        System.out.println(new File(context.getFilesDir()+"/user/profileImage.png").delete());
+        System.out.println(new File(context.getFilesDir()+"/user").delete());
     }
 
 }

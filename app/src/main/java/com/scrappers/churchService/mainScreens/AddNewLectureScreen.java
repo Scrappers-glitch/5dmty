@@ -14,8 +14,6 @@ import com.scrappers.churchService.HolderActivity;
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.localDatabase.LocalDatabase;
 
-import org.json.JSONException;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,12 +48,8 @@ public class AddNewLectureScreen extends Fragment {
         });
 
         LocalDatabase database=new LocalDatabase(context,"/user/user.json");
-        try {
-            servantName =database.readData().getJSONObject(0).getString("name");
-            System.err.println(servantName);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        servantName =database.readData(0,"name").toString();
+        System.err.println(servantName);
 
 
         Button sendLecture=viewInflater.findViewById(R.id.sendLecture);
@@ -77,8 +71,7 @@ public class AddNewLectureScreen extends Fragment {
 
                     try {
                         displayFragment(new AllLecturesScreen(context,
-                                new LocalDatabase(context,"/user/user.json").readData()
-                                        .getJSONObject(0).getString("name"),false));
+                                new LocalDatabase(context,"/user/user.json").readData(0,"name").toString(),false));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

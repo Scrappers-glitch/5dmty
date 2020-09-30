@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.scrappers.churchService.R;
-import com.scrappers.churchService.dialogBox.DialogBox;
+import com.scrappers.churchService.optionPane.OptionPane;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -28,11 +28,11 @@ public class RemoveLecture implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        final DialogBox dialogBox=new DialogBox(context);
-        dialogBox.showDialog(R.layout.remove_lecture_prompt, Gravity.CENTER);
-        assert  dialogBox.getAlertDialog().getWindow() !=null;
-        dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
-        final View view=dialogBox.getInflater();
+        final OptionPane optionPane =new OptionPane(context);
+        optionPane.showDialog(R.layout.dialog_prompt, Gravity.CENTER);
+        assert  optionPane.getAlertDialog().getWindow() !=null;
+        optionPane.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
+        final View view= optionPane.getInflater();
         Button yesDelete=view.findViewById(R.id.yesDelete);
         yesDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,14 +42,14 @@ public class RemoveLecture implements View.OnClickListener {
                 lecturesNode.child(lecture.getText().toString()).removeValue();
 
                 Toast.makeText(context,"تم الغاء الدرس",Toast.LENGTH_LONG).show();
-                dialogBox.getAlertDialog().dismiss();
+                optionPane.getAlertDialog().dismiss();
             }
         });
         Button noClose=view.findViewById(R.id.noClose);
         noClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogBox.getAlertDialog().dismiss();
+                optionPane.getAlertDialog().dismiss();
             }
         });
 

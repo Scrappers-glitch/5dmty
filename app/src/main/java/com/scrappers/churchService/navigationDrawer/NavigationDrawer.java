@@ -1,20 +1,25 @@
 package com.scrappers.churchService.navigationDrawer;
 
+import android.annotation.SuppressLint;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.scrappers.churchService.R;
-import com.scrappers.churchService.dialogBox.DialogBox;
 import com.scrappers.churchService.localDatabase.LocalDatabase;
+import com.scrappers.churchService.localDatabase.ProfileImage;
 import com.scrappers.churchService.mainScreens.AddNewLectureScreen;
 import com.scrappers.churchService.mainScreens.AllLecturesScreen;
 import com.scrappers.churchService.mainScreens.AllServantsScreen;
+import com.scrappers.churchService.optionPane.OptionPane;
+import com.scrappers.churchService.signOut.SignOut;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -36,6 +41,8 @@ public class NavigationDrawer {
     private String servantName;
     private LocalDatabase localDatabase;
     private boolean isRememberAdmin;
+    @SuppressLint("StaticFieldLeak")
+    public static ImageView profileImage;
 
     public NavigationDrawer(AppCompatActivity context,DrawerLayout drawerLayout,NavigationView navigationView,Toolbar toolbar){
         this.context=context;
@@ -45,6 +52,23 @@ public class NavigationDrawer {
     }
     public void activate(){
         navigationView.bringToFront();
+        profileImage=navigationView.getHeaderView(0).findViewById(R.id.profileImage);
+        try {
+            profileImage.setImageBitmap(new ProfileImage(context, context.getFilesDir() + "/user/profileImage.png").getProfileImageFromFile());
+        }catch (NullPointerException e) {
+            profileImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_person_24));
+        }
+
+        TextView profileName=navigationView.getHeaderView(0).findViewById(R.id.profileName);
+        profileName.setText(new LocalDatabase(context, "/user/user.json").readData(0,"name").toString());
+
+        TextView className=navigationView.getHeaderView(0).findViewById(R.id.servantClass);
+        className.setText(new LocalDatabase(context, "/user/user.json").readData(1,"class").toString());
+
+        TextView phoneNumber=navigationView.getHeaderView(0).findViewById(R.id.phoneNumber);
+        phoneNumber.setText(new LocalDatabase(context, "/user/user.json").readData(2,"phoneNumber").toString());
+
+
         ActionBarDrawerToggle actionBarDrawerToggle=new ActionBarDrawerToggle(context,drawerLayout,toolbar,OPEN_DRAWER,CLOSE_DRAWER);
         actionBarDrawerToggle.syncState();
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -55,7 +79,7 @@ public class NavigationDrawer {
                     case (R.id.allLecturesItem):
                         try{
                             localDatabase=new LocalDatabase(context,"/user/user.json");
-                            servantName=localDatabase.readData().getJSONObject(0).getString("name");
+                            servantName=localDatabase.readData(0,"name").toString();
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -69,36 +93,37 @@ public class NavigationDrawer {
                     case (R.id.serviceKeeper):
                         dismiss();
                         localDatabase=new LocalDatabase(context,"/user/user.json");
-                        try {
-                            isRememberAdmin=localDatabase.readData().getJSONObject(2).getBoolean("isRememberAdmin");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        isRememberAdmin= (boolean) localDatabase.readData(4,"isRememberAdmin");
                         if(!isRememberAdmin){
-                            final DialogBox dialogBox = new DialogBox(context);
-                            dialogBox.showDialog(R.layout.dialog_servicekeeper_key, Gravity.CENTER);
-                            assert dialogBox.getAlertDialog().getWindow() != null;
-                            dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.radial_dailog));
+                            final OptionPane optionPane = new OptionPane(context);
+                            optionPane.showDialog(R.layout.dialog_servicekeeper_key, Gravity.CENTER);
+                            assert optionPane.getAlertDialog().getWindow() != null;
+                            optionPane.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.radial_dailog));
 
-                            final EditText pinField = dialogBox.getInflater().findViewById(R.id.pinField);
+                            final EditText pinField = optionPane.getInflater().findViewById(R.id.pinField);
                             /*
                              * Remember me checkBox
                              */
-                            final CheckBox rememberAdmin=dialogBox.getInflater().findViewById(R.id.rememberMe);
+                            final CheckBox rememberAdmin= optionPane.getInflater().findViewById(R.id.rememberMe);
 
                             /*
                              *Listeners
                              */
-                            Button signIn = dialogBox.getInflater().findViewById(R.id.keeperSignIn);
+                            Button signIn = optionPane.getInflater().findViewById(R.id.keeperSignIn);
                             signIn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     if ( pinField.getText().toString().equals("000333444") ){
-                                        dialogBox.getAlertDialog().dismiss();
+                                        optionPane.getAlertDialog().dismiss();
                                         try {
-                                            localDatabase.writeData(localDatabase.readData().getJSONObject(0).getString("name"),
-                                                    localDatabase.readData().getJSONObject(1).getBoolean("isRememberMe"),
-                                                    rememberAdmin.isChecked());
+                                            localDatabase.writeData(
+                                                    localDatabase.readData(0,"name").toString(),
+                                                    localDatabase.readData(1,"class").toString(),
+                                                    localDatabase.readData(2,"phoneNumber").toString(),
+                                                    Boolean.parseBoolean(localDatabase.readData(3,"isRememberMe").toString()),
+                                                    rememberAdmin.isChecked()
+                                            );
+
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
@@ -111,21 +136,50 @@ public class NavigationDrawer {
                             /*
                              *Dismiss the Dialog
                              */
-                            Button cancel = dialogBox.getInflater().findViewById(R.id.keeperCancel);
+                            Button cancel = optionPane.getInflater().findViewById(R.id.keeperCancel);
                             cancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    dialogBox.getAlertDialog().dismiss();
+                                    optionPane.getAlertDialog().dismiss();
                                 }
                             });
-
 
                         }else{
                             displayFragment(new AllServantsScreen(context));
                         }
 
                         break;
+                    case (R.id.signOut):
+                        dismiss();
+                        final OptionPane optionPane =new OptionPane(context);
+                        optionPane.showDialog(R.layout.dialog_signout_prompt,Gravity.CENTER);
+                        assert optionPane.getAlertDialog().getWindow() !=null;
+                        optionPane.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
 
+                        final CheckBox deleteData= optionPane.getInflater().findViewById(R.id.deleteMyDataCheck);
+                        Button yesOut= optionPane.getInflater().findViewById(R.id.yesOut);
+                        yesOut.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(deleteData.isChecked()){
+                                    SignOut signOut=new SignOut(context);
+                                    signOut.startSession();
+                                    signOut.deleteRealTimeDataBase();
+                                }else{
+                                    SignOut signOut=new SignOut(context);
+                                    signOut.startSession();
+
+                                }
+                            }
+                        });
+                        Button noClose= optionPane.getInflater().findViewById(R.id.noClose);
+                        noClose.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                               optionPane.getAlertDialog().dismiss();
+                            }
+                        });
+                        break;
                 }
                 return false;
             }
@@ -142,7 +196,6 @@ public class NavigationDrawer {
     public void showUp(){
         drawerLayout.openDrawer(GravityCompat.START);
     }
-
     public boolean isShownUp() {
         return drawerLayout.isDrawerOpen(GravityCompat.START);
     }

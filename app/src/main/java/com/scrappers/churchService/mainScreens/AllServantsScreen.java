@@ -26,7 +26,7 @@ import com.scrappers.churchService.HolderActivity;
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.allServantsRV.ServantsCardView;
 import com.scrappers.churchService.allServantsRV.servantsModel.ServantsModel;
-import com.scrappers.churchService.dialogBox.DialogBox;
+import com.scrappers.churchService.optionPane.OptionPane;
 import com.scrappers.churchService.realTimeDatabase.ReadServantsChanges;
 
 import java.util.ArrayList;
@@ -108,16 +108,16 @@ public class AllServantsScreen extends Fragment {
         adapterSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DialogBox dialogBox=new DialogBox(context);
-                dialogBox.showDialog(R.layout.dialog_adapter_settings_allservants, Gravity.TOP);
-                assert dialogBox.getAlertDialog().getWindow() !=null;
-                dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
-//                dialogBox.getAlertDialog().getWindow().getAttributes().windowAnimations=R.style.Widget_AppCompat_PopupWindow;
+                final OptionPane optionPane =new OptionPane(context);
+                optionPane.showDialog(R.layout.dialog_adapter_settings_allservants, Gravity.TOP);
+                assert optionPane.getAlertDialog().getWindow() !=null;
+                optionPane.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
+//                optionPane.getAlertDialog().getWindow().getAttributes().windowAnimations=R.style.Widget_AppCompat_PopupWindow;
                 /*SearchType Settings Listeners*/
-                Button[] searchType={dialogBox.getInflater().findViewById(R.id.searchByName),
-                        dialogBox.getInflater().findViewById(R.id.searchByAge),
-                        dialogBox.getInflater().findViewById(R.id.searchByClass),
-                        dialogBox.getInflater().findViewById(R.id.searchByPhoneNumber)};
+                Button[] searchType={optionPane.getInflater().findViewById(R.id.searchByName),
+                        optionPane.getInflater().findViewById(R.id.searchByAge),
+                        optionPane.getInflater().findViewById(R.id.searchByClass),
+                        optionPane.getInflater().findViewById(R.id.searchByPhoneNumber)};
 
                 final String[] applySearchType={
                         "name",
@@ -131,15 +131,15 @@ public class AllServantsScreen extends Fragment {
                         @Override
                         public void onClick(View v) {
                             servantsCardView.setSearchType(applySearchType[finalPosition]);
-                            dialogBox.getAlertDialog().dismiss();
+                            optionPane.getAlertDialog().dismiss();
                         }
                     });
                 }
 
                 /*GridLayout Settings Listeners*/
                 final Button[] gridType={
-                        dialogBox.getInflater().findViewById(R.id.gridOneByOne),
-                        dialogBox.getInflater().findViewById(R.id.gridTwoByTwo)};
+                        optionPane.getInflater().findViewById(R.id.gridOneByOne),
+                        optionPane.getInflater().findViewById(R.id.gridTwoByTwo)};
 
                 final int[] applyGridType={1,2};
 
@@ -150,7 +150,7 @@ public class AllServantsScreen extends Fragment {
                         public void onClick(View v) {
                             setSpanCount(applyGridType[finalPosition]);
                             recyclerView.setLayoutManager(new GridLayoutManager(context,getSpanCount()));
-                            dialogBox.getAlertDialog().dismiss();
+                            optionPane.getAlertDialog().dismiss();
                         }
                     });
                 }
