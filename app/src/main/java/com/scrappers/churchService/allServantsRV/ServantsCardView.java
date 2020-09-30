@@ -2,6 +2,8 @@ package com.scrappers.churchService.allServantsRV;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.allServantsRV.servantsModel.ServantsModel;
@@ -12,9 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> {
+public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> implements Filterable {
     private final AppCompatActivity context;
     private ArrayList<ServantsModel> model;
+    private ArrayList<ServantsModel> filteredItems;
+    private String searchType="";
+
     public  ServantsCardView(AppCompatActivity context, ArrayList<ServantsModel> model){
         this.context=context;
         this.model=model;
@@ -44,5 +49,44 @@ public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> {
     @Override
     public int getItemCount() {
         return model.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                if(constraint.toString().length()==0 | constraint.toString().isEmpty()){
+                        filteredItems=new ArrayList<>(model);
+                }else {
+                    filteredItems=new ArrayList<>();
+                    filteredItems.clear();
+                  for(ServantsModel servantsModel : model){
+                      servantsModel.setSearchType(getSearchType());
+                      if(servantsModel.getSearchType().contains(constraint.toString())){
+                          filteredItems.add(servantsModel);
+                      }
+                  }
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredItems;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                model.clear();
+                model=(ArrayList<ServantsModel>)results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType=searchType;
+    }
+
+    public String getSearchType() {
+        return searchType;
     }
 }

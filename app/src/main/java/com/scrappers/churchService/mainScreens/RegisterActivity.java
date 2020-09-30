@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             /*
-             *save Data at LocalDatabase Environment
+             *create directory /user at Local App Data Environment Level
              */
             File directory = new File(RegisterActivity.this.getFilesDir() + "/user");
             if ( directory.mkdirs() ){
@@ -43,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if(isRememberMe){
-
             startActivity(new Intent(this, HolderActivity.class));
             finish();
         }else {
@@ -83,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                             servantNode.child("class").setValue(((EditText)findViewById(R.id.servantClass)).getText().toString());
                             servantNode.child("phoneNumber").setValue(((EditText)findViewById(R.id.phoneNumber)).getText().toString());
                             /*save Local Database as a JSON file*/
-                            localDatabase.writeData(((EditText)findViewById(R.id.servantName)).getText().toString(), isRememberMe);
+                            localDatabase.writeData(((EditText)findViewById(R.id.servantName)).getText().toString(), isRememberMe, false);
 
 
                     startActivity(new Intent(getApplicationContext(), HolderActivity.class));

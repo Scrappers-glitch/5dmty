@@ -23,7 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class AddNewLectureActivity extends Fragment {
+public class AddNewLectureScreen extends Fragment {
 
     private final FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
     private final DatabaseReference databaseReference=firebaseDatabase.getReference();
@@ -32,14 +32,14 @@ public class AddNewLectureActivity extends Fragment {
     private View viewInflater;
     private String servantName;
 
-    public AddNewLectureActivity(AppCompatActivity context){
+    public AddNewLectureScreen(AppCompatActivity context){
         this.context=context;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewInflater=inflater.inflate(R.layout.activity_addnewlecture,container,false);
+        viewInflater=inflater.inflate(R.layout.fragment_addnewlecture,container,false);
 
         Toolbar toolbar=viewInflater.findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class AddNewLectureActivity extends Fragment {
                     lectureNode.child("notes").setValue("");
 
                     try {
-                        displayFragment(new AllLecturesActivity(context,
+                        displayFragment(new AllLecturesScreen(context,
                                 new LocalDatabase(context,"/user/user.json").readData()
                                         .getJSONObject(0).getString("name"),false));
                     } catch (Exception e) {

@@ -13,7 +13,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 public class LecturesCardView extends Adapter<CardViewHolder> implements Filterable {
@@ -22,15 +21,13 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
     private ArrayList<LecturesModel> filteredItems=new ArrayList<>();
     private String servantName;
     private final AppCompatActivity context;
-    private final RecyclerView lecturesRV;
     private String searchType="";
     private boolean isNotesEnabled;
 
-    public LecturesCardView(ArrayList<LecturesModel>  model, String servantName, AppCompatActivity context, RecyclerView lecturesRV,boolean isNotesEnabled) {
+    public LecturesCardView(ArrayList<LecturesModel> model, String servantName, AppCompatActivity context, boolean isNotesEnabled) {
         this.model=model;
         this.servantName=servantName;
         this.context=context;
-        this.lecturesRV=lecturesRV;
         this.isNotesEnabled=isNotesEnabled;
     }
 
@@ -38,6 +35,9 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
         this.searchType = searchType;
     }
 
+    public String getSearchType() {
+        return searchType;
+    }
 
     @NonNull
     @Override
@@ -45,7 +45,7 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
         /*
          * Inflate a Single layout view
          */
-        return new CardViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cardviewlayout,parent,false));
+        return new CardViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.lecturecardview,parent,false));
     }
 
     public void setModel(ArrayList<LecturesModel> model) {
@@ -62,8 +62,8 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
             holder.lectureNotes.setEnabled(isNotesEnabled);
 
             holder.save.setOnClickListener(new SaveNewEdits(holder.lecture,holder.lectureNotes,holder.quote,holder.lectureDate,servantName,this));
-            holder.removeLecture.setOnClickListener(new RemoveLecture(context,holder.lecture));
-            holder.dropDownButton.setOnClickListener(new DropDownLecture(context,holder.card,holder.dropDownButton));
+            holder.removeLecture.setOnClickListener(new RemoveLecture(context,holder.lecture,servantName));
+            holder.dropDownButton.setOnClickListener(new DropDownDetails(context,holder.card,holder.dropDownButton));
     }
 
 
@@ -83,7 +83,7 @@ public class LecturesCardView extends Adapter<CardViewHolder> implements Filtera
                 }else{
                     filteredItems.clear();
                     for(LecturesModel lectureCard : model){
-                        lectureCard.applySearchType(searchType);
+                        lectureCard.applySearchType(getSearchType());
                         if(lectureCard.getSearchType().toLowerCase().contains(constraint.toString())){
                             filteredItems.add(lectureCard);
                         }

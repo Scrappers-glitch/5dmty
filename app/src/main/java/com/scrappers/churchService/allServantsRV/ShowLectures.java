@@ -3,7 +3,7 @@ package com.scrappers.churchService.allServantsRV;
 import android.view.View;
 
 import com.scrappers.churchService.R;
-import com.scrappers.churchService.mainScreens.AllLecturesActivity;
+import com.scrappers.churchService.mainScreens.AllLecturesScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -19,7 +19,7 @@ public class ShowLectures implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        displayFragment(new AllLecturesActivity(context,servantName,true));
+        displayFragment(new AllLecturesScreen(context,servantName,true));
     }
     private void displayFragment(Fragment window){
         FragmentTransaction fragmentTransaction=context.getSupportFragmentManager().beginTransaction();

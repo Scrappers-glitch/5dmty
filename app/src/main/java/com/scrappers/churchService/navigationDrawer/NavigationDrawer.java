@@ -1,16 +1,26 @@
 package com.scrappers.churchService.navigationDrawer;
 
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.scrappers.churchService.R;
-import com.scrappers.churchService.mainScreens.AddNewLectureActivity;
+import com.scrappers.churchService.dialogBox.DialogBox;
+import com.scrappers.churchService.localDatabase.LocalDatabase;
+import com.scrappers.churchService.mainScreens.AddNewLectureScreen;
+import com.scrappers.churchService.mainScreens.AllLecturesScreen;
 import com.scrappers.churchService.mainScreens.AllServantsScreen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -23,6 +33,9 @@ public class NavigationDrawer {
     private  DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private String servantName;
+    private LocalDatabase localDatabase;
+    private boolean isRememberAdmin;
 
     public NavigationDrawer(AppCompatActivity context,DrawerLayout drawerLayout,NavigationView navigationView,Toolbar toolbar){
         this.context=context;
@@ -40,19 +53,78 @@ public class NavigationDrawer {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case (R.id.allLecturesItem):
+                        try{
+                            localDatabase=new LocalDatabase(context,"/user/user.json");
+                            servantName=localDatabase.readData().getJSONObject(0).getString("name");
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         dismiss();
-                        displayFragment(new AllServantsScreen(context));
+                        displayFragment(new AllLecturesScreen(context,servantName,false));
                         break;
                     case (R.id.addNewLectureItem):
                         dismiss();
-                        displayFragment(new AddNewLectureActivity(context));
+                        displayFragment(new AddNewLectureScreen(context));
                         break;
-//                    case (R.id.allServantsItem):
-//                        DialogBox dialogBox=new DialogBox(context);
-//                        dialogBox.showDialog(R.layout., Gravity.CENTER);
-//
-//
-//                        break;
+                    case (R.id.serviceKeeper):
+                        dismiss();
+                        localDatabase=new LocalDatabase(context,"/user/user.json");
+                        try {
+                            isRememberAdmin=localDatabase.readData().getJSONObject(2).getBoolean("isRememberAdmin");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if(!isRememberAdmin){
+                            final DialogBox dialogBox = new DialogBox(context);
+                            dialogBox.showDialog(R.layout.dialog_servicekeeper_key, Gravity.CENTER);
+                            assert dialogBox.getAlertDialog().getWindow() != null;
+                            dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.radial_dailog));
+
+                            final EditText pinField = dialogBox.getInflater().findViewById(R.id.pinField);
+                            /*
+                             * Remember me checkBox
+                             */
+                            final CheckBox rememberAdmin=dialogBox.getInflater().findViewById(R.id.rememberMe);
+
+                            /*
+                             *Listeners
+                             */
+                            Button signIn = dialogBox.getInflater().findViewById(R.id.keeperSignIn);
+                            signIn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if ( pinField.getText().toString().equals("000333444") ){
+                                        dialogBox.getAlertDialog().dismiss();
+                                        try {
+                                            localDatabase.writeData(localDatabase.readData().getJSONObject(0).getString("name"),
+                                                    localDatabase.readData().getJSONObject(1).getBoolean("isRememberMe"),
+                                                    rememberAdmin.isChecked());
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        displayFragment(new AllServantsScreen(context));
+                                    } else {
+                                        Toast.makeText(context, "الرجاء التأكد من كلمه المرور", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            /*
+                             *Dismiss the Dialog
+                             */
+                            Button cancel = dialogBox.getInflater().findViewById(R.id.keeperCancel);
+                            cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialogBox.getAlertDialog().dismiss();
+                                }
+                            });
+
+
+                        }else{
+                            displayFragment(new AllServantsScreen(context));
+                        }
+
+                        break;
 
                 }
                 return false;

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 import com.scrappers.churchService.localDatabase.LocalDatabase;
-import com.scrappers.churchService.mainScreens.AllLecturesActivity;
+import com.scrappers.churchService.mainScreens.AllLecturesScreen;
 import com.scrappers.churchService.navigationDrawer.NavigationDrawer;
 
 import androidx.annotation.Nullable;
@@ -20,13 +20,13 @@ public class HolderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_holder);
         NavigationView navigationView=findViewById(R.id.navigation);
         DrawerLayout drawerLayout=findViewById(R.id.drawer);
         Toolbar toolbar=findViewById(R.id.toolbar);
         /*Define Default Fragment*/
         try {
-            displayFragment(new AllLecturesActivity(this,
+            displayFragment(new AllLecturesScreen(this,
                     new LocalDatabase(this,"/user/user.json").readData().
                             getJSONObject(0).getString("name"),false));
         } catch (Exception e) {

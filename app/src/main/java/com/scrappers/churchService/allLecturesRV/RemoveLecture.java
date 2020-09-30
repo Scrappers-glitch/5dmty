@@ -4,13 +4,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.scrappers.churchService.R;
 import com.scrappers.churchService.dialogBox.DialogBox;
-import com.scrappers.churchService.localDatabase.LocalDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -21,9 +20,10 @@ public class RemoveLecture implements View.OnClickListener {
     private final EditText lecture;
     private String servantName;
 
-    public RemoveLecture(AppCompatActivity context, EditText lecture) {
+    public RemoveLecture(AppCompatActivity context, EditText lecture, String servantName) {
         this.context=context;
         this.lecture=lecture;
+        this.servantName=servantName;
     }
 
     @Override
@@ -38,16 +38,10 @@ public class RemoveLecture implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
-                LocalDatabase localDatabase=new LocalDatabase(context,"/user/user.json");
-                try{
-                    servantName =localDatabase.readData().getJSONObject(0).getString("name");
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
                 DatabaseReference lecturesNode=databaseReference.child("Gnod").child("servants").child(servantName).child("lectures");
                 lecturesNode.child(lecture.getText().toString()).removeValue();
 
-                Snackbar.make(view,"تم الغاء الدرس",Snackbar.LENGTH_LONG).show();
+                Toast.makeText(context,"تم الغاء الدرس",Toast.LENGTH_LONG).show();
                 dialogBox.getAlertDialog().dismiss();
             }
         });

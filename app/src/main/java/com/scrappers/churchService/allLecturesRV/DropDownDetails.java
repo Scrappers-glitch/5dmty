@@ -10,13 +10,13 @@ import com.scrappers.churchService.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-public class DropDownLecture implements View.OnClickListener {
+public class DropDownDetails implements View.OnClickListener {
 
     private final AppCompatActivity context;
     private final LinearLayout card;
     private final ImageButton dropDownButton;
 
-    public DropDownLecture(AppCompatActivity context, LinearLayout card, ImageButton dropDownButton) {
+    public DropDownDetails(AppCompatActivity context, LinearLayout card, ImageButton dropDownButton) {
         this.context=context;
         this.card=card;
         this.dropDownButton=dropDownButton;

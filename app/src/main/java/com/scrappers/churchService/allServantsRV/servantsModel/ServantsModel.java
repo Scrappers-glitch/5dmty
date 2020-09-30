@@ -6,6 +6,7 @@ public class ServantsModel {
     private String servantAge;
     private String servantClass;
     private String servantPhoneNumber;
+    private String searchType;
 
     public ServantsModel(String servantName,String servantAge,String servantClass,String servantPhoneNumber){
         this.setServantName(servantName);
@@ -44,5 +45,28 @@ public class ServantsModel {
 
     public void setServantPhoneNumber(String servantPhoneNumber) {
         this.servantPhoneNumber = servantPhoneNumber;
+    }
+
+
+
+    public void setSearchType(String searchType) {
+        switch (searchType){
+            case "name":
+                this.searchType=getServantName();
+                break;
+            case "age":
+                this.searchType=getServantAge();
+                break;
+            case "class":
+                this.searchType=getServantClass();
+                break;
+            case "phoneNumber":
+                this.searchType=getServantPhoneNumber();
+                break;
+        }
+    }
+
+    public String getSearchType() {
+        return searchType;
     }
 }

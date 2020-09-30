@@ -32,7 +32,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class AllLecturesActivity extends Fragment {
+public class AllLecturesScreen extends Fragment {
 
     private View viewInflater;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -45,7 +45,7 @@ public class AllLecturesActivity extends Fragment {
     private boolean isNotesEnabled;
 
 
-    public AllLecturesActivity(AppCompatActivity context,String servantName,boolean isNotesEnabled){
+    public AllLecturesScreen(AppCompatActivity context, String servantName, boolean isNotesEnabled){
         this.context=context;
         this.servantName=servantName;
         this.isNotesEnabled=isNotesEnabled;
@@ -54,7 +54,7 @@ public class AllLecturesActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewInflater=inflater.inflate(R.layout.activity_all_lectures,container,false);
+        viewInflater=inflater.inflate(R.layout.fragment_all_lectures,container,false);
 
         Toolbar toolbar=viewInflater.findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -121,7 +121,7 @@ public class AllLecturesActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 final DialogBox dialogBox=new DialogBox(context);
-                dialogBox.showDialog(R.layout.adapter_settings_dialog, Gravity.TOP);
+                dialogBox.showDialog(R.layout.dialog_adapter_settings_alllectures, Gravity.TOP);
                 assert dialogBox.getAlertDialog().getWindow() !=null;
                 dialogBox.getAlertDialog().getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.radial_dailog));
 //                dialogBox.getAlertDialog().getWindow().getAttributes().windowAnimations=R.style.Widget_AppCompat_PopupWindow;
@@ -177,7 +177,7 @@ public class AllLecturesActivity extends Fragment {
     private void loadAllLectures(View viewInflater){
         lecturesRV=viewInflater.findViewById(R.id.allLecturesRV);
         lecturesRV.setLayoutManager(new GridLayoutManager(context,getSpanCount()));
-        lecturesCardView=new LecturesCardView(new ArrayList<LecturesModel>(),servantName,context,lecturesRV,isNotesEnabled);
+        lecturesCardView=new LecturesCardView(new ArrayList<LecturesModel>(),servantName,context, isNotesEnabled);
         lecturesCardView.setSearchType("lecture");
         lecturesRV.setAdapter(lecturesCardView);
 

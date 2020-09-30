@@ -33,13 +33,14 @@ public class LocalDatabase {
      * @param name the JSONObject that holds that JSONArray that have the local data in place
      * @param isRememberMe true if the user signed in - false otherwise
      */
-    public void writeData(String name,boolean isRememberMe)  {
+    public void writeData(String name, boolean isRememberMe, boolean isRememberAdmin)  {
         JSONObject jsonObject=new JSONObject();
         JSONArray jsonArray=new JSONArray();
         try {
             jsonObject.put(name, jsonArray);
             jsonArray.put(new JSONObject().put("name",name));
             jsonArray.put(new JSONObject().put("isRememberMe",isRememberMe));
+            jsonArray.put(new JSONObject().put("isRememberAdmin",isRememberAdmin));
             try(BufferedWriter fos=new BufferedWriter(new FileWriter(new File(context.getFilesDir()+file)))){
                 fos.write(jsonObject.getString(name));
             }catch (IOException ex){

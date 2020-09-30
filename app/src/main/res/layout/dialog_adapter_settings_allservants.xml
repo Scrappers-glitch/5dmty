@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@drawable/radial_dailog"
+    android:foregroundTint="@color/colorPrimaryDark">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="نوع البحث :"
+        android:textColor="@color/paletteWhite"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/searchByName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background__red_circle"
+        android:text="اسم الخادم"
+        android:layout_marginBottom="10dp"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/searchByAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background__red_circle"
+        android:text="سن الخادم"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/searchByClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background__red_circle"
+        android:text="فصل الخادم"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/searchByPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background__red_circle"
+        android:text="رقم التليفون"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/paletteWhite"
+        android:text="طريقه عرض البيانات :"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/gridOneByOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background__red_circle"
+        android:text="1 x 1"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/gridTwoByTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30sp"
+        android:background="@drawable/background__red_circle"
+        android:text="2 x 2"
+        android:textColor="#FFFFFF" />
+
+
+</LinearLayout>

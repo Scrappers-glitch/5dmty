@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@drawable/radial_dailog"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="برجاء ادخال كلمه المرور الخاصه بأمين الخدمة :"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/paletteWhite"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/pinField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:textColor="@color/paletteWhite"
+        />
+
+    <CheckBox
+        android:id="@+id/rememberMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:backgroundTint="@color/paletteWhite"
+        android:textColor="@color/paletteWhite"
+        android:layoutDirection="rtl"
+        android:text="تذكرني"/>
+    <Button
+        android:id="@+id/keeperSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background__red_circle"
+        android:text="دخول"
+        android:layout_marginBottom="10dp"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/keeperCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background__red_circle"
+        android:text="الغاء"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

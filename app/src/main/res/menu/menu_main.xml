@@ -10,28 +10,31 @@
             android:icon="@drawable/ic_launcher_foreground"
             android:title="تحضير درس جديد" />
     </group>
-        <item android:title="Admin" />
-        <menu>
-            <group android:checkableBehavior="single">
-            <item
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="Confirmation" />
-            <item
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="Notes for briefs" />
-            <item
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="whole serve" />
-            </group>
-        </menu>
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="phone" />
-            <item
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="mail" />
-        </menu>
-    </item>
+        <item android:id="@+id/serviceKeeper"
+            android:title="امين الخدمه" />
+        <item android:id="@+id/signOut"
+            android:title="تسجيل خروج"/>
+<!--        <menu>-->
+<!--            <group android:checkableBehavior="single">-->
+<!--            <item-->
+<!--                android:icon="@drawable/ic_launcher_foreground"-->
+<!--                android:title="Confirmation" />-->
+<!--            <item-->
+<!--                android:icon="@drawable/ic_launcher_foreground"-->
+<!--                android:title="Notes for briefs" />-->
+<!--            <item-->
+<!--                android:icon="@drawable/ic_launcher_foreground"-->
+<!--                android:title="whole serve" />-->
+<!--            </group>-->
+<!--        </menu>-->
+<!--    <item android:title="Communicate">-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:icon="@drawable/ic_launcher_foreground"-->
+<!--                android:title="phone" />-->
+<!--            <item-->
+<!--                android:icon="@drawable/ic_launcher_foreground"-->
+<!--                android:title="mail" />-->
+<!--        </menu>-->
+<!--    </item>-->
 </menu>
