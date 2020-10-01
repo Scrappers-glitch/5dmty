@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
@@ -46,8 +47,13 @@ public class ProfileImage {
             e.printStackTrace();
         }
     }
-    public Bitmap getProfileImageFromFile(){
+    public Bitmap getProfileImageFromFile() {
         System.out.println(path);
         return BitmapFactory.decodeFile(path);
     }
+
+    public String getPath() {
+        return path;
+    }
+
 }

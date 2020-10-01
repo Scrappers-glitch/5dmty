@@ -16,7 +16,7 @@ public class ReadServantsChanges implements ValueEventListener {
     private ArrayList<ServantsModel> model;
     private String churchName;
 
-    public ReadServantsChanges(String churchName, ServantsCardView servantsCardView) {
+    public ReadServantsChanges(String churchName, @NonNull ServantsCardView servantsCardView) {
 
         this.servantsCardView=servantsCardView;
         this.churchName=churchName;

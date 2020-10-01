@@ -47,23 +47,48 @@
             android:gravity="center"
             >
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="100dp"
-        app:cardElevation="0dp"
-        app:contentPadding="0dp"
-        app:cardBackgroundColor="@android:color/transparent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:gravity="center"
         android:layout_marginBottom="42dp"
         >
+
+            <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="95dp"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp"
+            app:contentPadding="0dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            android:layout_marginBottom="0dp"
+            >
         <ImageView
             android:id="@+id/personalImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:backgroundTint="@color/paletteWhite"
-            android:src="@drawable/ic_baseline_person_24"/>
+            android:src="@drawable/ic_baseline_person_24"
+            android:scaleType="centerCrop"/>
     </androidx.cardview.widget.CardView>
-
+        <ImageButton
+            android:id="@+id/addPersonalImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background__red_circle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="56dp"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            />
+    </RelativeLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+         android:gravity="center">
     <EditText
         android:id="@+id/servantName"
         android:layout_width="match_parent"
@@ -133,6 +158,8 @@
                 android:checked="false"
                 android:buttonTint="@color/paletteWhite"
                 />
+     </LinearLayout>
+            </ScrollView>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <ImageButton

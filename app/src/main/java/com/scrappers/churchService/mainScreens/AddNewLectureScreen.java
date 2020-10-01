@@ -30,7 +30,7 @@ public class AddNewLectureScreen extends Fragment {
     private View viewInflater;
     private String servantName;
 
-    public AddNewLectureScreen(AppCompatActivity context){
+    public AddNewLectureScreen(@NonNull AppCompatActivity context){
         this.context=context;
     }
 
@@ -83,7 +83,7 @@ public class AddNewLectureScreen extends Fragment {
         return viewInflater;
     }
 
-    private void displayFragment(Fragment window){
+    private void displayFragment(@NonNull Fragment window){
         FragmentTransaction fragmentTransaction=context.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content,window);
         fragmentTransaction.commit();

@@ -21,8 +21,7 @@ public class ReadLecturesChanges implements ValueEventListener {
      * @param lecturesCardView the single view in the all lectures RV
      * @param servantName name of device owner
      */
-    public ReadLecturesChanges(LecturesCardView lecturesCardView, String servantName) {
-
+    public ReadLecturesChanges(@NonNull LecturesCardView lecturesCardView, String servantName) {
         this.servantName = servantName;
         this.lecturesCardView=lecturesCardView;
     }
@@ -41,16 +40,13 @@ public class ReadLecturesChanges implements ValueEventListener {
                             String.valueOf(dataSnapshot.child("date").getValue()),
                             String.valueOf(dataSnapshot.child("verse").getValue()),
                             String.valueOf(dataSnapshot.child("notes").getValue())));
-
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-
             lecturesCardView.setModel(model);
             lecturesCardView.notifyDataSetChanged();
-
     }
 
     @Override

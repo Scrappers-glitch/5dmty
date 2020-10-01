@@ -22,7 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import static com.scrappers.churchService.navigationDrawer.NavigationDrawer.profileImage;
+import static com.scrappers.churchService.navigationDrawer.NavigationDrawer.profileImageWidget;
 
 public class HolderActivity extends AppCompatActivity {
 
@@ -49,7 +49,7 @@ public class HolderActivity extends AppCompatActivity {
         navigationDrawer=new NavigationDrawer(HolderActivity.this,drawerLayout,navigationView,toolbar);
         navigationDrawer.activate();
 
-        profileImage.setOnClickListener(new View.OnClickListener() {
+        profileImageWidget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ActivityCompat.requestPermissions(HolderActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_EXTERNAL_STORAGE);
@@ -57,7 +57,7 @@ public class HolderActivity extends AppCompatActivity {
         });
     }
 
-    private void displayFragment(Fragment window){
+    private void displayFragment(@NonNull Fragment window){
         FragmentTransaction fragmentTransaction=this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content,window);
         fragmentTransaction.commit();
@@ -79,7 +79,7 @@ public class HolderActivity extends AppCompatActivity {
             assert data!=null;
             ProfileImage image=new ProfileImage(HolderActivity.this,data);
             image.saveProfileImage();
-            profileImage.setImageBitmap(image.getProfileImageFromRawData());
+            profileImageWidget.setImageBitmap(image.getProfileImageFromRawData());
         }
     }
 

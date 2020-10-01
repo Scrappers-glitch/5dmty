@@ -8,19 +8,32 @@
     android:layout_height="match_parent"
     tools:openDrawer="start"
     android:fitsSystemWindows="true"
-    tools:context="HolderActivity">
+    tools:context="HolderActivity"
+    android:textDirection="ltr"
+    android:textAlignment="textStart">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
-        android:layout_width="wrap_content"
+        android:layout_width="380dp"
         android:layout_height="match_parent"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/menu_main"
         android:layout_gravity="start"
+        android:background="@color/colorPrimaryDark"
+        app:itemIconTint="@color/paletteWhite"
+        app:itemTextColor="@color/paletteWhite"
+        app:itemShapeFillColor="@color/paletteWhite"
+        android:foregroundTint="@color/paletteWhite"
+        app:itemHorizontalPadding="16dp"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
+        app:itemIconSize="32dp"
+        app:itemTextAppearance="@style/menu_text_style"
         />
 
 
     <FrameLayout
+
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

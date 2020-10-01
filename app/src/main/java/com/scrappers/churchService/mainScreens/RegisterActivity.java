@@ -39,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         try {
             isRememberMe = (boolean) localDatabase.readData(3,"isRememberMe");
         } catch (Exception e) {
@@ -57,13 +56,17 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(this, HolderActivity.class));
             finish();
         }else {
+            ImageView addPersonalImage=findViewById(R.id.addPersonalImage);
             personalImage=findViewById(R.id.personalImage);
-            personalImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ActivityCompat.requestPermissions(RegisterActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_EXTERNAL_STORAGE);
-                }
-            });
+            ImageView[] addImageButtons={addPersonalImage,personalImage};
+            for(ImageView addImage : addImageButtons) {
+                addImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ActivityCompat.requestPermissions(RegisterActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE);
+                    }
+                });
+            }
 
             /*Remember Me checkBox*/
             CheckBox rememberMe=findViewById(R.id.rememberMe);
@@ -123,24 +126,22 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == READ_EXTERNAL_STORAGE){
-            Intent docIntent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            docIntent.addCategory(Intent.CATEGORY_OPENABLE);
-            docIntent.setType("image/*");
-            startActivityForResult(Intent.createChooser(docIntent,"Select a Profile Image from Local Storage"),OPEN_DOC);
-        }
+            if(requestCode == READ_EXTERNAL_STORAGE){
+                Intent docIntent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                docIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                docIntent.setType("image/*");
+                startActivityForResult(Intent.createChooser(docIntent,"Select a Profile Image from Local Storage"),OPEN_DOC);
+            }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==OPEN_DOC && resultCode==Activity.RESULT_OK){
-            assert data !=null;
-            ProfileImage profileImage=new ProfileImage(RegisterActivity.this,data);
-            personalImage.setImageBitmap(profileImage.getProfileImageFromRawData());
-            profileImage.saveProfileImage();
-        }
+            if(requestCode==OPEN_DOC && resultCode==Activity.RESULT_OK){
+                assert data !=null;
+                ProfileImage profileImage=new ProfileImage(RegisterActivity.this,data);
+                personalImage.setImageBitmap(profileImage.getProfileImageFromRawData());
+                profileImage.saveProfileImage();
+            }
     }
-
-
 }

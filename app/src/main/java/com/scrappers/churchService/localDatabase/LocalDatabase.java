@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LocalDatabase {
@@ -23,7 +24,7 @@ public class LocalDatabase {
      * @param context the context of the activity
      * @param file the local file to save data to & fetch it from
      */
-    public LocalDatabase(AppCompatActivity context,String file){
+    public LocalDatabase(@NonNull AppCompatActivity context,@NonNull String file){
         this.context=context;
         this.file=file;
     }
@@ -55,9 +56,11 @@ public class LocalDatabase {
 
     /**
      * reads the data fetched from the local file & parse it to a JSONArray
+     * @param jsonObjectIndex the index of the JsonObject inside the JsonArray that you wanna access
+     * @param key @{@link NonNull} the key to access the data(Value) in jsonObject
      * @return data in the form of JSONArray
      */
-    public Object readData(int jsonObjectIndex,String key){
+    public Object readData(int jsonObjectIndex,@NonNull String key){
         try(BufferedReader fis=new BufferedReader(new FileReader(new File(context.getFilesDir()+file)))){
             return new JSONArray(fis.readLine()).getJSONObject(jsonObjectIndex).get(key);
         }catch (IOException | JSONException ex){

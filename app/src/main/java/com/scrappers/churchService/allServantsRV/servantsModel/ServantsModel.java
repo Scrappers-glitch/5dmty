@@ -1,5 +1,8 @@
 package com.scrappers.churchService.allServantsRV.servantsModel;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class ServantsModel {
 
     private String servantName;
@@ -8,7 +11,7 @@ public class ServantsModel {
     private String servantPhoneNumber;
     private String searchType;
 
-    public ServantsModel(String servantName,String servantAge,String servantClass,String servantPhoneNumber){
+    public ServantsModel(@Nullable String servantName, @Nullable String servantAge, @Nullable String servantClass, @Nullable String servantPhoneNumber){
         this.setServantName(servantName);
         this.setServantAge(servantAge);
         this.setServantClass(servantClass);
@@ -49,7 +52,7 @@ public class ServantsModel {
 
 
 
-    public void setSearchType(String searchType) {
+    public void setSearchType(@NonNull String searchType) {
         switch (searchType){
             case "name":
                 this.searchType=getServantName();

@@ -1,17 +1,7 @@
 package com.scrappers.churchService.mainScreens;
 
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,6 +21,18 @@ import com.scrappers.churchService.realTimeDatabase.ReadServantsChanges;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 
 public class AllServantsScreen extends Fragment {
 
@@ -41,16 +43,18 @@ public class AllServantsScreen extends Fragment {
     private RecyclerView recyclerView;
     private ServantsCardView servantsCardView;
     private int spanCount=1;
+    private ImageButton adapterSettings;
 
 
-    public AllServantsScreen(AppCompatActivity context) {
+    public AllServantsScreen(@NonNull AppCompatActivity context) {
         this.context=context;
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         viewInflater=inflater.inflate(R.layout.fragment_all_servants_screen, container, false);
 
@@ -65,11 +69,14 @@ public class AllServantsScreen extends Fragment {
         });
 
         swipeRefreshLayout=viewInflater.findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.GREEN,Color.RED,Color.GREEN);
+        swipeRefreshLayout.setColorSchemeColors(
+                getResources().getColor(R.color.colorAccent2,null),
+                getResources().getColor(R.color.colorPrimaryDark,null)
+        );
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new CountDownTimer(4000,2000){
+                new CountDownTimer(2500,2000){
 
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -102,9 +109,24 @@ public class AllServantsScreen extends Fragment {
                 return false;
             }
         });
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapterSettings.setVisibility(View.VISIBLE);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+                databaseReference.addValueEventListener(new ReadServantsChanges("Gnod",servantsCardView));
+                adapterSettings.setVisibility(View.INVISIBLE);
+                return false;
+            }
+        });
 
 
-        ImageButton adapterSettings=viewInflater.findViewById(R.id.adapterSettings);
+        adapterSettings=viewInflater.findViewById(R.id.adapterSettings);
         adapterSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

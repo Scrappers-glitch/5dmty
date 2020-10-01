@@ -1,5 +1,8 @@
 package com.scrappers.churchService.allLecturesRV.lecturesModel;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class LecturesModel {
     private String lecture;
     private String date;
@@ -7,7 +10,7 @@ public class LecturesModel {
     private String notes;
     private String searchType;
 
-    public LecturesModel(String lecture,String date,String verse,String notes){
+    public LecturesModel(@Nullable String lecture, @Nullable String date, @Nullable String verse, @Nullable String notes){
         this.lecture=lecture;
         this.date=date;
         this.verse=verse;
@@ -22,24 +25,12 @@ public class LecturesModel {
         return lecture;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getDate() {
         return date;
     }
 
-    public void setVerse(String verse) {
-        this.verse = verse;
-    }
-
     public String getVerse() {
         return verse;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
     }
 
     public String getNotes() {
@@ -49,7 +40,7 @@ public class LecturesModel {
     public String getSearchType() {
         return searchType;
     }
-    public void applySearchType(String searchType){
+    public void applySearchType(@NonNull String searchType){
         if(searchType.toLowerCase().trim().contains("lecture")){
             searchType=getLecture();
             this.searchType=searchType;

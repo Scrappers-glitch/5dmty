@@ -9,32 +9,16 @@
             android:id="@+id/addNewLectureItem"
             android:icon="@drawable/ic_launcher_foreground"
             android:title="تحضير درس جديد" />
-    </group>
         <item android:id="@+id/serviceKeeper"
+            android:icon="@drawable/ic_launcher_foreground"
             android:title="امين الخدمه" />
-        <item android:id="@+id/signOut"
-            android:title="تسجيل خروج"/>
-<!--        <menu>-->
-<!--            <group android:checkableBehavior="single">-->
-<!--            <item-->
-<!--                android:icon="@drawable/ic_launcher_foreground"-->
-<!--                android:title="Confirmation" />-->
-<!--            <item-->
-<!--                android:icon="@drawable/ic_launcher_foreground"-->
-<!--                android:title="Notes for briefs" />-->
-<!--            <item-->
-<!--                android:icon="@drawable/ic_launcher_foreground"-->
-<!--                android:title="whole serve" />-->
-<!--            </group>-->
-<!--        </menu>-->
-<!--    <item android:title="Communicate">-->
-<!--        <menu>-->
-<!--            <item-->
-<!--                android:icon="@drawable/ic_launcher_foreground"-->
-<!--                android:title="phone" />-->
-<!--            <item-->
-<!--                android:icon="@drawable/ic_launcher_foreground"-->
-<!--                android:title="mail" />-->
-<!--        </menu>-->
-<!--    </item>-->
+    </group>
+    <item android:title="">
+            <menu>
+
+                <item android:id="@+id/signOut"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="تسجيل خروج"/>
+            </menu>
+    </item>
 </menu>

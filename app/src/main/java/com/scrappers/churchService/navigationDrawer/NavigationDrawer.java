@@ -21,7 +21,10 @@ import com.scrappers.churchService.mainScreens.AllServantsScreen;
 import com.scrappers.churchService.optionPane.OptionPane;
 import com.scrappers.churchService.signOut.SignOut;
 
+import java.io.File;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,9 +45,9 @@ public class NavigationDrawer {
     private LocalDatabase localDatabase;
     private boolean isRememberAdmin;
     @SuppressLint("StaticFieldLeak")
-    public static ImageView profileImage;
+    public static ImageView profileImageWidget;
 
-    public NavigationDrawer(AppCompatActivity context,DrawerLayout drawerLayout,NavigationView navigationView,Toolbar toolbar){
+    public NavigationDrawer(@NonNull AppCompatActivity context,@NonNull DrawerLayout drawerLayout,@NonNull NavigationView navigationView,@Nullable Toolbar toolbar){
         this.context=context;
         this.drawerLayout=drawerLayout;
         this.navigationView=navigationView;
@@ -52,11 +55,12 @@ public class NavigationDrawer {
     }
     public void activate(){
         navigationView.bringToFront();
-        profileImage=navigationView.getHeaderView(0).findViewById(R.id.profileImage);
-        try {
-            profileImage.setImageBitmap(new ProfileImage(context, context.getFilesDir() + "/user/profileImage.png").getProfileImageFromFile());
-        }catch (NullPointerException e) {
-            profileImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_person_24));
+        profileImageWidget =navigationView.getHeaderView(0).findViewById(R.id.profileImage);
+        ProfileImage profileImage=new ProfileImage(context, context.getFilesDir() + "/user/profileImage.png");
+        if(new File (profileImage.getPath()).exists()){
+            profileImageWidget.setImageBitmap(profileImage.getProfileImageFromFile());
+        }else {
+            profileImageWidget.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_person_24));
         }
 
         TextView profileName=navigationView.getHeaderView(0).findViewById(R.id.profileName);
@@ -185,7 +189,7 @@ public class NavigationDrawer {
             }
         });
     }
-    private void displayFragment(Fragment window){
+    private void displayFragment(@NonNull Fragment window){
         FragmentTransaction fragmentTransaction=context.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content,window);
         fragmentTransaction.commit();

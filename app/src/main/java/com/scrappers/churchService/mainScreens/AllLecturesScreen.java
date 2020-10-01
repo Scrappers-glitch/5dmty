@@ -1,6 +1,7 @@
 package com.scrappers.churchService.mainScreens;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -43,14 +45,16 @@ public class AllLecturesScreen extends Fragment {
     private int spanCount=1;
     private final AppCompatActivity context;
     private boolean isNotesEnabled;
+    private ImageButton adapterSettings;
 
 
-    public AllLecturesScreen(AppCompatActivity context, String servantName, boolean isNotesEnabled){
+    public AllLecturesScreen(@NonNull AppCompatActivity context, String servantName, boolean isNotesEnabled){
         this.context=context;
         this.servantName=servantName;
         this.isNotesEnabled=isNotesEnabled;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,11 +70,14 @@ public class AllLecturesScreen extends Fragment {
 
         swipeRefreshLayout=viewInflater.findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
-        swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.GREEN,Color.YELLOW,Color.CYAN);
+        swipeRefreshLayout.setColorSchemeColors(
+                getResources().getColor(R.color.colorAccent2,null),
+                getResources().getColor(R.color.colorPrimaryDark,null)
+        );
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new CountDownTimer(4000,1000){
+                new CountDownTimer(2500,1000){
 
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -107,16 +114,24 @@ public class AllLecturesScreen extends Fragment {
                 return false;
             }
         });
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapterSettings.setVisibility(View.VISIBLE);
+            }
+        });
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
                 databaseReference.addValueEventListener(new ReadLecturesChanges(lecturesCardView, servantName));
                 lecturesCardView.notifyDataSetChanged();
+
+                adapterSettings.setVisibility(View.INVISIBLE);
                 return false;
             }
         });
 
-        ImageButton adapterSettings=viewInflater.findViewById(R.id.adapterSettings);
+        adapterSettings=viewInflater.findViewById(R.id.adapterSettings);
         adapterSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,7 +189,7 @@ public class AllLecturesScreen extends Fragment {
     }
 
 
-    private void loadAllLectures(View viewInflater){
+    private void loadAllLectures(@NonNull View viewInflater){
         lecturesRV=viewInflater.findViewById(R.id.allLecturesRV);
         lecturesRV.setLayoutManager(new GridLayoutManager(context,getSpanCount()));
         lecturesCardView=new LecturesCardView(new ArrayList<LecturesModel>(),servantName,context, isNotesEnabled);

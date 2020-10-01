@@ -2,6 +2,7 @@ package com.scrappers.churchService.optionPane;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +12,10 @@ public class OptionPane {
     private View inflater;
     private AlertDialog alertDialog;
 
-    public OptionPane(AppCompatActivity context){
+    public OptionPane(@NonNull AppCompatActivity context){
         this.context=context;
     }
-    public void showDialog(int designedLayout,int gravity){
+    public void showDialog(int designedLayout, int gravity){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         inflater=context.getLayoutInflater().inflate(designedLayout,null);
         builder.setView(inflater);
@@ -24,11 +25,11 @@ public class OptionPane {
         alertDialog.getWindow().setGravity(gravity);
         alertDialog.show();
     }
-
+    @NonNull
     public AlertDialog getAlertDialog() {
         return alertDialog;
     }
-
+    @NonNull
     public View getInflater() {
         return inflater;
     }

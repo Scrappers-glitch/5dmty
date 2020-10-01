@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static java.lang.System.out;
@@ -16,7 +17,7 @@ public class CreateLecturesIndex {
      * create lectures index with length for firebase database
      * @param context class context of use
      */
-    public CreateLecturesIndex(AppCompatActivity context){
+    public CreateLecturesIndex(@NonNull AppCompatActivity context){
         this.context=context;
     }
 

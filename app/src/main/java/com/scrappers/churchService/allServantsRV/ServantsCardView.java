@@ -20,7 +20,7 @@ public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> imple
     private ArrayList<ServantsModel> filteredItems;
     private String searchType="";
 
-    public  ServantsCardView(AppCompatActivity context, ArrayList<ServantsModel> model){
+    public ServantsCardView(@NonNull AppCompatActivity context, ArrayList<ServantsModel> model){
         this.context=context;
         this.model=model;
     }
@@ -82,7 +82,7 @@ public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> imple
         };
     }
 
-    public void setSearchType(String searchType) {
+    public void setSearchType(@NonNull String searchType) {
         this.searchType=searchType;
     }
 
