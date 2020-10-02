@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radial_dailog"
+    android:backgroundTint="@color/paletteWhite">
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        />
+    <Button
+        android:id="@+id/addNewDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radial_dailog"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/paletteWhite"
+        android:text="+"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+
+</LinearLayout>

@@ -6,9 +6,12 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.scrappers.churchService.R;
+import com.scrappers.churchService.allServantsRV.daysOfAbsence.DaysOfAbsence;
 import com.scrappers.churchService.allServantsRV.servantsModel.ServantsModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,8 +49,9 @@ public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> imple
 
         holder.servantLectures.setOnClickListener(new ShowLectures(context,model.get(position).getServantName()));
         holder.dropDownButton.setOnClickListener(new DropDownDetails(context,holder.card,holder.dropDownButton));
-        holder.absence.setOnClickListener(new TakeAbsence(context,holder.absence,model.get(position).getServantName()));
-
+        holder.allAbsenceDays.setOnClickListener(new DaysOfAbsence(context,
+                model.get(position).getServantName(),model.get(position).getNumberOfAbsence()));
+        holder.absence.setOnClickListener(new TakeAbsence(model.get(position).getServantName(), SimpleDateFormat.getDateInstance().format(new Date()),null,false));
     }
 
     @Override

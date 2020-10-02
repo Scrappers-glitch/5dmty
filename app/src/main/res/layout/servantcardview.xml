@@ -177,9 +177,9 @@
 
             <CheckBox
                     android:id="@+id/servantsAbsence"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="الغياب :"
+                    android:text="حضور اليوم :"
                     android:layoutDirection="ltr"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -188,20 +188,39 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left">
+                   >
+
                     <Button
                         android:id="@+id/servantLectures"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
                         android:layout_gravity="start"
                         android:layout_marginHorizontal="8dp"
+                        android:layout_marginStart="225dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginBottom="18dp"
                         android:background="@drawable/background__red_circle"
                         android:backgroundTint="@color/colorAccent2"
                         android:elevation="8dp"
-                        android:paddingHorizontal="48dp"
-                        android:layout_marginTop="12dp"
+                        android:paddingHorizontal="20dp"
                         android:text="عرض الدروس"
+                        android:textColor="@color/paletteWhite"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/daysOfAbsence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="18dp"
+                        android:background="@drawable/background__red_circle"
+                        android:backgroundTint="@color/cardview_shadow_start_color"
+                        android:elevation="8dp"
+                        android:paddingHorizontal="25dp"
+                        android:text="ايام الحضور"
                         android:textColor="@color/paletteWhite"
                         android:textSize="20sp" />
                 </RelativeLayout>

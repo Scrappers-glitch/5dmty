@@ -23,6 +23,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
     public ImageButton dropDownButton;
     public CheckBox absence;
     public TextView numberOfAbsence;
+    public Button allAbsenceDays;
 
 
     public CardViewHolder(@NonNull View itemView) {
@@ -38,5 +39,6 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
 
         absence=itemView.findViewById(R.id.servantsAbsence);
         numberOfAbsence=itemView.findViewById(R.id.numberOfAbsence);
+        allAbsenceDays=itemView.findViewById(R.id.daysOfAbsence);
     }
 }
