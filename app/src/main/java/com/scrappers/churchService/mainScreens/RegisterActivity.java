@@ -105,6 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
                          servantNode.child("age").setValue(((EditText) findViewById(R.id.servantAge)).getText().toString());
                          servantNode.child("class").setValue(((EditText) findViewById(R.id.servantClass)).getText().toString());
                          servantNode.child("phoneNumber").setValue(((EditText) findViewById(R.id.phoneNumber)).getText().toString());
+                         servantNode.child("numberOfAbsence").setValue(0);
+                         servantNode.child("absence").setValue("");
                          /*save Local Database as a JSON file*/
                          localDatabase.writeData(
                                  ((EditText) findViewById(R.id.servantName)).getText().toString(),

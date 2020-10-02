@@ -10,12 +10,16 @@ public class ServantsModel {
     private String servantClass;
     private String servantPhoneNumber;
     private String searchType;
+    private String numberOfAbsence;
+    private String absence;
 
-    public ServantsModel(@Nullable String servantName, @Nullable String servantAge, @Nullable String servantClass, @Nullable String servantPhoneNumber){
+    public ServantsModel(@Nullable String servantName, @Nullable String servantAge, @Nullable String servantClass, @Nullable String servantPhoneNumber, String numberOfAbsence, String absence){
         this.setServantName(servantName);
         this.setServantAge(servantAge);
         this.setServantClass(servantClass);
         this.setServantPhoneNumber(servantPhoneNumber);
+        this.setNumberOfAbsence(numberOfAbsence);
+        this.setAbsence(absence);
     }
 
     public String getServantName() {
@@ -50,7 +54,21 @@ public class ServantsModel {
         this.servantPhoneNumber = servantPhoneNumber;
     }
 
+    public void setNumberOfAbsence(String numberOfAbsence) {
+        this.numberOfAbsence = numberOfAbsence;
+    }
 
+    public void setAbsence(String absence) {
+        this.absence = absence;
+    }
+
+    public String isAbsence() {
+        return absence;
+    }
+
+    public String getNumberOfAbsence() {
+        return numberOfAbsence;
+    }
 
     public void setSearchType(@NonNull String searchType) {
         switch (searchType){

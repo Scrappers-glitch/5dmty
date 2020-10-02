@@ -6,7 +6,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.scrappers.churchService.allServantsRV.ServantsCardView;
 import com.scrappers.churchService.allServantsRV.servantsModel.ServantsModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 
@@ -33,7 +35,10 @@ public class ReadServantsChanges implements ValueEventListener {
                             String.valueOf(dataSnapshot.child("details").child("name").getValue()),
                             String.valueOf(dataSnapshot.child("details").child("age").getValue()),
                             String.valueOf(dataSnapshot.child("details").child("class").getValue()),
-                            String.valueOf(dataSnapshot.child("details").child("phoneNumber").getValue())));
+                            String.valueOf(dataSnapshot.child("details").child("phoneNumber").getValue()),
+                            String.valueOf(dataSnapshot.child("details").child("numberOfAbsence").getValue()),
+                            String.valueOf(dataSnapshot.child("details").child("absence").child(SimpleDateFormat.getDateInstance().format(new Date())).getValue())
+                    ));
                 }
             }
         }catch (Exception e){

@@ -41,9 +41,13 @@ public class ServantsCardView extends RecyclerView.Adapter<CardViewHolder> imple
         holder.servantAge.setText(model.get(position).getServantAge());
         holder.servantClass.setText(model.get(position).getServantClass());
         holder.servantPhoneNumber.setText(model.get(position).getServantPhoneNumber());
+        holder.absence.setChecked(Boolean.parseBoolean(model.get(position).isAbsence()));
+        holder.numberOfAbsence.setText(model.get(position).getNumberOfAbsence());
 
         holder.servantLectures.setOnClickListener(new ShowLectures(context,model.get(position).getServantName()));
         holder.dropDownButton.setOnClickListener(new DropDownDetails(context,holder.card,holder.dropDownButton));
+        holder.absence.setOnClickListener(new TakeAbsence(context,holder.absence,model.get(position).getServantName()));
+
     }
 
     @Override
